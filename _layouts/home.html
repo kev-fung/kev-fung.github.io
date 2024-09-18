@@ -1,0 +1,72 @@
+---
+layout: home_base
+---
+
+<div class="home">
+  <!-- {%- if page.title -%}
+    <h1 class="page-heading">{{ page.title }}</h1>
+  {%- endif -%} -->
+
+  <div class="home-container">
+    <div class="me-image-container">
+      <img src="/assets/imgs/me-cropped.JPG" alt="hi there" class="image"/>
+    </div>
+    
+    <div class="right-box">
+      <h2 style="letter-spacing: 0.0005em; font-weight: 500; font-size: 20px;">KEVINFUNG</h2>
+        <!-- {{ content }} -->
+      <div>
+        a machine learning engineer at Expedia Group. deploying systems handling several thousands of machine learning models to compete in the algorithmic marketing space. studied at University of Sussex and Imperial College London.
+      </div>
+      <div style="width: 95%">
+        <br>
+        continuously learning, passionate in machine learning, engineering, philosophy, and economics, embracer of creativity.
+      </div>
+      <div style="width: 85%">
+        <br>
+        this place is test grounds for writing my thoughts out - on code designs, patterns, research, and anything in between. 
+      </div>
+
+      <div class="contacts">
+        <div class="footer-social-icons">
+
+          {% if site.social_links.medium %}
+          <a href="{{ site.social_links.medium }}" target="_blank">
+            <i class="fab fa-medium"></i>
+          </a>
+          {% endif %}
+
+          {% if site.social_links.linkedin %}
+            <a href="{{ site.social_links.linkedin }}" target="_blank">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          {% endif %}
+          
+          {% if site.social_links.email %}
+            <a href="{{ site.social_links.email }}">
+              <i class="fas fa-envelope"></i>
+            </a>
+          {% endif %}
+    
+          {% if site.social_links.github %}
+            <a href="{{ site.social_links.github }}" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+          {% endif %}
+
+          {% if site.social_links.webring %}
+          <a href="{{ site.social_links.webring }}" target="_blank">
+            <img src="assets/imgs/webring.png" alt="Webring" width="15" height="13">
+          </a>
+          {% endif %}
+
+        </div>
+        </div>
+    </div>
+  </div>
+  
+</div>
+
+<!-- <div class="blog-posts-bg">
+  hellofasd
+</div> -->

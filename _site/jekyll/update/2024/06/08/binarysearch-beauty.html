@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Binary Search Beauty [Leetcode] [Problem Solving] | KKY.co.uk</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Binary Search Beauty [Leetcode] [Problem Solving]" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Binary search is as the name implies, it searches for something by splitting and only considering either left or right halfs of an array. But how to properly understand this?" />
+<meta property="og:description" content="Binary search is as the name implies, it searches for something by splitting and only considering either left or right halfs of an array. But how to properly understand this?" />
+<link rel="canonical" href="http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty.html" />
+<meta property="og:url" content="http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty.html" />
+<meta property="og:site_name" content="KKY.co.uk" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-06-08T08:53:16+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Binary Search Beauty [Leetcode] [Problem Solving]" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-06-08T08:53:16+01:00","datePublished":"2024-06-08T08:53:16+01:00","description":"Binary search is as the name implies, it searches for something by splitting and only considering either left or right halfs of an array. But how to properly understand this?","headline":"Binary Search Beauty [Leetcode] [Problem Solving]","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty.html"},"url":"http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="KKY.co.uk" />
+
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">
+      <span class="medium">kky</span><span class="extralight">.co.uk</span>
+    </a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          <a class="page-link" href="/index">about</a><a class="page-link" href="/notes/">notes</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Binary Search Beauty [Leetcode] [Problem Solving]</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2024-06-08T08:53:16+01:00" itemprop="datePublished">
+        Jun 8, 2024
+      </time>[Page views: <span id="page-views">Loading...</span>]
+          
+    </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Binary search is as the name implies, it searches for something by splitting and only considering either left or right halfs of an array. But how to properly understand this?</p>
+
+<p>In short:</p>
+
+<p>Binary search finds the MINIMUM value that satisfies the condition you provide it.</p>
+
+<p>The classic binary search problem where it asks to find a value in an array is one of the biggest pitfalls into thinking that there is some notion of a mid-way value to return, and it also makes you think there’s a need to always sort the value. But this is WRONG THINKING for binary search.</p>
+
+<p>In reality, binary search only considers a binary condition - true or false. And depending on which, we will traverse down either the left or right parts.</p>
+
+<p>However - how do we return the value that we want? If we only consider left and right parts how do we also include the middle part (the value which we check)?</p>
+
+<p>This is when we must determine if we should include the middle part as always the “left part” or the “right part”.</p>
+
+<p>Imagine a problem to find the first “X” in this array of X and O.</p>
+
+<p>OOOOOXXXX</p>
+
+<p>Now say we run our binary search and eventually we reach some point where we’re only considering the subarray:</p>
+
+<p>OXXXXXX</p>
+
+<p>If we look at this, our midpoint is X (and is also the global answer to our asked problem) we should see that if we attempt to include this X to the right part of the midpoint, we’re going to be way off from the true answer! Therefore it only makes sense to consider our target/ midway-value to be in the left half always.</p>
+
+<p>We’ll always look to search like this OX, OOX, OOOX, OOOOX, OOOOOX.</p>
+
+<p>Now we realise this, this means that our implementation will look something like:</p>
+
+<p>If condition==True:
+    update right pointer to equal to mid-way point. (i.e. only consider our left part + midway value now).
+Else:
+    update left pointer to equal mid-way point + 1. (i.e. only consider our right part exc. Midway value now).</p>
+
+<p>Why does searching for values in sorted array work with binary search?</p>
+
+<p>We just need to reframe the problem. In reality, if we apply the notion of some binary domain to our problem, we’re basically saying:</p>
+
+<p>Let’s split our array into numbers smaller than or equal to the number of our interest, and numbers larger than the number of our interest.</p>
+
+<p>e.g. I want to find 4 in 1234567:</p>
+
+<p>1 2 3 4 5 6 7
+OOO X X X X</p>
+
+<p>This is the same problem as what we detailed earlier.</p>
+
+<!-- You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated. This is another one!
+
+
+Jekyll requires blog post files to be named according to the following format:
+
+`YEAR-MONTH-DAY-title.MARKUP`
+
+Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+
+Jekyll also offers powerful support for code snippets:
+
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+
+Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/ -->
+
+  </div>
+
+  <!-- <div id="utterances-comments">
+    <h6>Leave a comment below!</h6>
+    <script src="https://utteranc.es/client.js"
+    repo="kev-fung/kev-fung.github.io"
+    issue-term="pathname"
+    label="utterance✨💬✨"
+    theme="github-dark"
+    crossorigin="anonymous"
+    async>
+  </script>
+  </div> --><a class="u-url" href="/jekyll/update/2024/06/08/binarysearch-beauty.html" hidden></a>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col-3">
+        © 2024 Kevin Fung  [Page views: <span id="page-views">Loading...</span>]
+
+        <!-- <p class="feed-subscribe">
+          <a href="http://localhost:4000/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p> -->
+      <!--
+      </div>
+      <div class="footer-col">
+        <p></p>
+      </div>
+    </div> -->
+
+    <!-- <div class="footer-social-icons"><ul class="social-media-list"></ul>
+
+        <a href="https://www.linkedin.com/in/kevin-king-yue-fung/" target="_blank">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      
+      
+      
+        <a href="mailto:your-email@example.com">
+          <i class="fas fa-envelope"></i>
+        </a>
+      
+
+      
+    </div> -->
+
+  </div>
+
+</footer>
+<script data-goatcounter="https://kky.goatcounter.com/count"
+    async src="//gc.zgo.at/count.js"></script>
+    <script>
+      fetch('https://kky.goatcounter.com/api/v0/count?path=' + encodeURIComponent(window.location.pathname))
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('page-views').innerText = data.count;
+        })
+        .catch(error => {
+          console.error('Error fetching page views:', error);
+          document.getElementById('page-views').innerText = 'Unavailable';
+        });
+    </script>
+  
+  </body>
+
+</html>

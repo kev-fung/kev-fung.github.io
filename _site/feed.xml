@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-09-18T22:35:39+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">KKY.co.uk</title><subtitle></subtitle><entry><title type="html">Exploding Infinities [Regression] [Machine Learning]</title><link href="http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html" rel="alternate" type="text/html" title="Exploding Infinities [Regression] [Machine Learning]" /><published>2024-09-12T08:53:16+01:00</published><updated>2024-09-12T08:53:16+01:00</updated><id>http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html"><![CDATA[<p>Work in progress.</p>
+
+<!-- You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+
+Jekyll requires blog post files to be named according to the following format:
+
+`YEAR-MONTH-DAY-title.MARKUP`
+
+Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+
+Jekyll also offers powerful support for code snippets:
+
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+
+Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/ -->]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Work in progress.]]></summary></entry><entry><title type="html">Binary Search Beauty [Leetcode] [Problem Solving]</title><link href="http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty.html" rel="alternate" type="text/html" title="Binary Search Beauty [Leetcode] [Problem Solving]" /><published>2024-06-08T08:53:16+01:00</published><updated>2024-06-08T08:53:16+01:00</updated><id>http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty.html"><![CDATA[<p>Binary search is as the name implies, it searches for something by splitting and only considering either left or right halfs of an array. But how to properly understand this?</p>
+
+<p>In short:</p>
+
+<p>Binary search finds the MINIMUM value that satisfies the condition you provide it.</p>
+
+<p>The classic binary search problem where it asks to find a value in an array is one of the biggest pitfalls into thinking that there is some notion of a mid-way value to return, and it also makes you think there’s a need to always sort the value. But this is WRONG THINKING for binary search.</p>
+
+<p>In reality, binary search only considers a binary condition - true or false. And depending on which, we will traverse down either the left or right parts.</p>
+
+<p>However - how do we return the value that we want? If we only consider left and right parts how do we also include the middle part (the value which we check)?</p>
+
+<p>This is when we must determine if we should include the middle part as always the “left part” or the “right part”.</p>
+
+<p>Imagine a problem to find the first “X” in this array of X and O.</p>
+
+<p>OOOOOXXXX</p>
+
+<p>Now say we run our binary search and eventually we reach some point where we’re only considering the subarray:</p>
+
+<p>OXXXXXX</p>
+
+<p>If we look at this, our midpoint is X (and is also the global answer to our asked problem) we should see that if we attempt to include this X to the right part of the midpoint, we’re going to be way off from the true answer! Therefore it only makes sense to consider our target/ midway-value to be in the left half always.</p>
+
+<p>We’ll always look to search like this OX, OOX, OOOX, OOOOX, OOOOOX.</p>
+
+<p>Now we realise this, this means that our implementation will look something like:</p>
+
+<p>If condition==True:
+    update right pointer to equal to mid-way point. (i.e. only consider our left part + midway value now).
+Else:
+    update left pointer to equal mid-way point + 1. (i.e. only consider our right part exc. Midway value now).</p>
+
+<p>Why does searching for values in sorted array work with binary search?</p>
+
+<p>We just need to reframe the problem. In reality, if we apply the notion of some binary domain to our problem, we’re basically saying:</p>
+
+<p>Let’s split our array into numbers smaller than or equal to the number of our interest, and numbers larger than the number of our interest.</p>
+
+<p>e.g. I want to find 4 in 1234567:</p>
+
+<p>1 2 3 4 5 6 7
+OOO X X X X</p>
+
+<p>This is the same problem as what we detailed earlier.</p>
+
+<!-- You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated. This is another one!
+
+
+Jekyll requires blog post files to be named according to the following format:
+
+`YEAR-MONTH-DAY-title.MARKUP`
+
+Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+
+Jekyll also offers powerful support for code snippets:
+
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+
+Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/ -->]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Binary search is as the name implies, it searches for something by splitting and only considering either left or right halfs of an array. But how to properly understand this?]]></summary></entry></feed>

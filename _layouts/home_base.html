@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  <body>
+
+    {%- include header.html -%}
+
+    <main>
+      <section class="page-home-content" aria-label="Content"> 
+        <div class="wrapper">
+          {{ content }}
+        </div>
+      </section>
+      <section class="blog-posts-bg">
+        <div class="wrapper">
+          <div class="home-container">
+            <div class="me-image-container2">
+              <!-- <img src="/assets/imgs/me.JPG" alt="hi there" /> -->
+            </div>
+            
+            <div class="blog-posts">
+              <h5 class="blog-posts-text" style="font-size: 12px;">
+                .My Notes
+              </h5>
+              {% if site.paginate %}
+                {% assign posts = paginator.posts %}
+              {% else %}
+                {% assign posts = site.posts %}
+              {% endif %}
+            
+              {%- if posts.size > 0 -%}
+              {%- if page.list_title -%}
+                <h2 class="post-list-heading">{{ page.list_title }}</h2>
+              {%- endif -%}
+              <ul class="post-list">
+                {%- assign date_format = site.minima.date_format | default: ".%Y/%m/%d" -%}
+                {%- for post in posts -%}
+                <li>
+                  <span class="post-meta">{{ post.date | date: date_format }} <a class="post-link" style="margin-left: 40px; font-size: 12px;" href="{{ post.url | relative_url }}">
+                        {{ post.title | escape }}
+                      </a>
+                  </span>
+                  <!-- {%- if site.show_excerpts -%}
+                    {{ post.excerpt }}
+                  {%- endif -%} -->
+                </li>
+                {%- endfor -%}
+              </ul>
+            
+              {% if site.paginate %}
+                <div class="pager">
+                  <ul class="pagination">
+                  {%- if paginator.previous_page %}
+                    <li><a href="{{ paginator.previous_page_path | relative_url }}" class="previous-page">{{ paginator.previous_page }}</a></li>
+                  {%- else %}
+                    <li><div class="pager-edge">•</div></li>
+                  {%- endif %}
+                    <li><div class="current-page">{{ paginator.page }}</div></li>
+                  {%- if paginator.next_page %}
+                    <li><a href="{{ paginator.next_page_path | relative_url }}" class="next-page">{{ paginator.next_page }}</a></li>
+                  {%- else %}
+                    <li><div class="pager-edge">•</div></li>
+                  {%- endif %}
+                  </ul>
+                </div>
+              {%- endif %}
+            
+              {%- endif -%}
+          </div>
+        </div>
+      </section>
+    </main>
+    
+    <script data-goatcounter="https://kky.goatcounter.com/count"
+    async src="//gc.zgo.at/count.js"></script>
+    <script>
+      fetch('https://kky.goatcounter.com/api/v0/count?path=' + encodeURIComponent(window.location.pathname))
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('page-views').innerText = data.count;
+        })
+        .catch(error => {
+          console.error('Error fetching page views:', error);
+          document.getElementById('page-views').innerText = 'Unavailable';
+        });
+    </script>
+
+  </body>
+  {%- include footer.html -%}
+
+</html>
