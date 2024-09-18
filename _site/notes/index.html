@@ -114,19 +114,29 @@
 
 </footer>
 <!-- GoatCounter integration -->
-    <script>
+    <!-- <script>
       var t = setInterval(function() {
           if (window.goatcounter && window.goatcounter.visit_count) {
               clearInterval(t);
               window.goatcounter.visit_count({append: 'body'});
           }
       }, 100);
-    </script>
+    </script> -->
     <script data-goatcounter="https://kky.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 
     <!-- Fetch page views and display in #page-views -->
+
     <script>
+      var r = new XMLHttpRequest();
+      r.addEventListener('load', function() {
+          document.querySelector('#page-views').innerText = JSON.parse(this.responseText).count
+      })
+      r.open('GET', 'https://kky.goatcounter.com/counter/' + encodeURIComponent(location.pathname) + '.json')
+      r.send()
+    </script>
+  
+    <!-- <script>
       fetch('https://kky.goatcounter.com/counter/' + encodeURIComponent(window.location.pathname))
         .then(response => response.json())
         .then(data => {
@@ -136,8 +146,8 @@
             console.error('Error fetching page views:', error);
             document.getElementById('page-views').innerText = 'Unavailable';
         });
-    </script>
-    
+    </script> -->
+
   </body>
 
 </html>
