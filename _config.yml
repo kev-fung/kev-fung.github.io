@@ -22,7 +22,7 @@ title: kevfung
 email: kevinfung@kky.co.uk
 description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "kky.co.uk" # the base hostname & protocol for your site, e.g. http://example.com
+url: "kkyfung.co.uk" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 
