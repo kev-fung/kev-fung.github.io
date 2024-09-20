@@ -5,28 +5,24 @@ date:   2024-09-12 08:53:16 +0100
 categories: jekyll update
 ---
 
-Work in progress.
+When working on large-scale machine learning (ML) platforms with simplified workflow interfaces for machine learning scientists, many model implementations can become black boxes. I once worked on a particular ML platform where several linear regression models had begun producing model weights to the order of 12 significant figures, which then were subjected to an np.exp() producing infinities, and the only thing changed had been the Databricks instance type it was running on! 
 
-<!-- You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+##### Diving into the cause
 
-Jekyll requires blog post files to be named according to the following format:
+Initially I thought it was a difference in how random seeds defaulted based on the internal implementation we used for regression. Fixing it did not work. I began injecting logs throughout the system, trying to understand the data at each step of the flow, perhaps the data IO step corrupted the model inputs or there was a division of zero happening due to numerical precision? Only at the modelling step I discovered the models had extremely high condition numbers!
 
-`YEAR-MONTH-DAY-title.MARKUP`
+The workflow was using an internal component that transformed the dataset to keep only a large group of one hot encoded features to predict the target labels. The result was a highly sparse, 300+ column dataset with a significant portion of duplicated rows corresponding to a different label each. The models were solved via OLS, the common implementation calculates the pseudo-inverse of the matrix, thus attempting to solve an extremely ill-conditioned matrix naturally produced numerical instability down to machine level precision in its calculations - hence our exploding infinities!
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+##### But it worked on my machine!
 
-Jekyll also offers powerful support for code snippets:
+What might have worked on one machine type, wouldn't necessarily always work on another, this becomes problematic when workflows aren't properly containerised making models effectively dependent on the machine architecture. From an engineering perspective, this also reduces the number of infrastructure options available when designing cost efficient ML systems and pipelines.
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+##### What could we do then?
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+There were a number of ways to solve this practically. Containerising applications makes sense if not constrained by the scale and complexity of the platform and the initial motivation to change machine types in the first place. 
 
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/ -->
+Switching from matrix to iterative solvers - since OLS was used, we could use SGD instead. The trade-off would be an impact to the "understood performance" of the model and convergence time. However, simply removing the infinities would not truly solve the nature of the problem. 
+
+Regularisation - introducing a bias term to the data could stabilise the solver. There are many different regularisations that can be used like L1, L2 biases. However, if one is optimising for accurate model weights, the precision will be affected.
+
+Changing methodologies - it's crucial to understand what the model was attempting to solve, in this case we were dealing with an inverse optimisation problem. As with most real-world matrix problems, assuming linearity may never be the optimal approximation. We could look to use non-convex techniques, a widely researched field, in this example instead.
