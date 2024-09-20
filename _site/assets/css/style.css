@@ -808,8 +808,8 @@ table td {
 }
 .me-image-container {
   position: relative;
-  top: -30px;
-  left: -10px;
+  top: -10px;
+  left: -20px;
   width: 180px;
   height: 365px;
   display: inline-block; /* Ensures div width/height is respected */
@@ -863,7 +863,7 @@ main {
 
 .right-box {
   position: relative; /* Allows precise positioning */
-  left: 25px; /* Moves the box to the right of the image div by 30px */
+  left: 15px; /* Moves the box to the right of the image div by 30px */
   padding: 0px; /* Optional padding for the box */
   font-size: 12px;
   margin-top: 100px;
@@ -883,7 +883,7 @@ main {
 .blog-posts {
   position: relative;
   top: 0px;
-  left: 25px;
+  left: 15px;
   padding: 0px;
   margin-top: 30px;
   margin-bottom: 0;
