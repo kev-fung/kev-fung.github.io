@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Exploding Infinities [Machine Learning] [Numerical Solvers]"
+title:  "Exploding Infinities [Regression] [Machine Learning]"
 date:   2024-09-12 08:53:16 +0100
 categories: jekyll update
 ---
@@ -17,12 +17,15 @@ The workflow was using an internal component that transformed the dataset to kee
 
 What might have worked on one machine type, wouldn't necessarily always work on another, this becomes problematic when workflows aren't properly containerised making models effectively dependent on the machine architecture. From an engineering perspective, this also reduces the number of infrastructure options available when designing cost efficient ML systems and pipelines.
 
-##### What could we do then?
+##### What can we do then?
 
-There were a number of ways to solve this practically. Containerising applications makes sense if not constrained by the scale and complexity of the platform and the initial motivation to change machine types in the first place. 
+There were a number of ways to solve this practically. Containerising applications makes sense if not constrained by the scale and complexity of the platform and the initial motivation to change machine types in the first place.
 
-Switching from matrix to iterative solvers - since OLS was used, we could use SGD instead. The trade-off would be an impact to the "understood performance" of the model and convergence time. However, simply removing the infinities would not truly solve the nature of the problem. 
+**Switch to iterative solvers**: Since OLS was used, we could use SGD instead. The trade-off would be an impact to the "understood performance" of the model and convergence time. However, simply removing the infinities would not truly solve the nature of the problem. 
 
-Regularisation - introducing a bias term to the data could stabilise the solver. There are many different regularisations that can be used like L1, L2 biases. However, if one is optimising for accurate model weights, the precision will be affected.
+**Apply regularisation**: Introducing a bias term to the data could stabilise the solver. There are many different regularisations that can be used like L1, L2 biases. However, if one is optimising for accurate model weights, the precision will be affected.
 
-Changing methodologies - it's crucial to understand what the model was attempting to solve, in this case we were dealing with an inverse optimisation problem. As with most real-world matrix problems, assuming linearity may never be the optimal approximation. We could look to use non-convex techniques, a widely researched field, in this example instead.
+**Change methodology**: It's crucial to understand what the model was attempting to solve, in this case we were dealing with an inverse optimisation problem. As with most real-world matrix problems, assuming linearity may never be the optimal approximation. We could look to use non-convex techniques, a widely researched field, in this example instead.
+
+
+Kudos to John and Debs on the casual chat when we watched F1 at the pub 🏎️
