@@ -21,7 +21,7 @@ There were a number of ways to solve this practically. Containerising applicatio
 
 Applying regularisation was another way. Introducing a bias term to the dataset could have stabilised the solver. There are many different regularisations that can be used like L1 and L2 biases. However, if one was only interested in attaining the most accurate model weights in the problem, the precision of these weights will be affected. This was the case our model was attempting to solve.
 
-In the end, simply removing the infinities would not truly solve the nature of the problem that the model had set out to solve. Thus we turned to changing the methodology that would avoid our issue of numerical stability. Since we were dealing with an inverse optimisation problem, and given the non-linearity of the problem itself, non-convex solutions were investigated.
+In the end, simply removing the infinities would not truly solve the nature of the problem that the model had set out to solve. Thus we turned to changing the methodology that would avoid our issue of numerical stability. Since we were dealing with an inverse optimisation problem, and given the non-linearity of the problem itself, non-convex solutions were finally investigated.
 
 <br>
 
