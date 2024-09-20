@@ -17,11 +17,11 @@ What might have worked on one machine type, wouldn't necessarily always work on 
 
 ###### Controlling the explosion
 
-There were a number of ways to solve this practically. Containerising applications makes sense if not constrained by the scale and complexity of the platform and the initial motivation to change machine types in the first place. Since OLS was used, we could use SGD instead. The trade-off would be an impact to the "understood performance" of the model and convergence time. However, simply removing the infinities would not truly solve the nature of the problem. 
+There were a number of ways to solve this practically. Containerising applications makes sense if not constrained by the scale and complexity of the platform and the initial motivation to change machine types in the first place. Since OLS was used, we could have used SGD as the replacement solver given it's iterative nature. The trade-off would be an impact to the "understood performance" of the model and convergence time, however this would solve the issue of exploding values. 
 
-Applying regularisation was another way. Introducing a bias term to the data could stabilise the solver. There are many different regularisations that can be used like L1, L2 biases. However, if one is optimising for accurate model weights, the precision will be affected.
+Applying regularisation was another way. Introducing a bias term to the dataset could have stabilised the solver. There are many different regularisations that can be used like L1 and L2 biases. However, if one was only interested in attaining the most accurate model weights in the problem, the precision of these weights will be affected. This was the case our model was attempting to solve.
 
-In the end however, changing the methodology made most sense. It was crucial to understand what the model was attempting to solve, in this case we were dealing with an inverse optimisation problem. As with most real-world matrix problems, assuming linearity may never be the optimal approximation. We could look to use non-convex techniques, a widely researched field, in this example instead.
+In the end, simply removing the infinities would not truly solve the nature of the problem that the model had set out to solve. Thus we turned to changing the methodology that would avoid our issue of numerical stability. Since we were dealing with an inverse optimisation problem, and given the non-linearity of the problem itself, non-convex solutions were investigated.
 
 <br>
 
