@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Exploding Infinities [Regression] [Machine Learning]"
+title:  "Exploding Infinities [Machine Learning] [Numerical Solvers]"
 date:   2024-09-12 08:53:16 +0100
 categories: jekyll update
 ---

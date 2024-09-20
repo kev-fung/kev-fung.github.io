@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Binary Search Beauty [Leetcode] [Problem Solving]"
+title:  "Binary Search Beauty [Problem Solving]"
 date:   2024-06-08 08:53:16 +0100
 categories: jekyll update
 ---
