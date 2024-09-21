@@ -3,21 +3,21 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Exploding Infinities [Regression] [Machine Learning] | kevfung</title>
+<title>When Machine Learning Models Break: A Lesson in Numerical Instability [Regression] [Machine Learning] | kevfung</title>
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="Exploding Infinities [Regression] [Machine Learning]" />
+<meta property="og:title" content="When Machine Learning Models Break: A Lesson in Numerical Instability [Regression] [Machine Learning]" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="When working on large-scale machine learning (ML) platforms with simplified workflow interfaces for machine learning scientists, many model implementations can become black boxes. I once worked on a particular ML platform where several linear regression models had begun producing model weights to the order of 12 significant figures, which then were subjected to an np.exp() producing infinities, and the only thing changed had been the Databricks instance type it was running on!" />
-<meta property="og:description" content="When working on large-scale machine learning (ML) platforms with simplified workflow interfaces for machine learning scientists, many model implementations can become black boxes. I once worked on a particular ML platform where several linear regression models had begun producing model weights to the order of 12 significant figures, which then were subjected to an np.exp() producing infinities, and the only thing changed had been the Databricks instance type it was running on!" />
+<meta name="description" content="In large-scale machine learning platforms with simplified workflows, model implementations can become black boxes. I once worked on such a platform where linear regression models started producing weights in the magnitude of 10^12 figures, leading to infinities after applying np.exp(). The only change? The Databricks instance type!" />
+<meta property="og:description" content="In large-scale machine learning platforms with simplified workflows, model implementations can become black boxes. I once worked on such a platform where linear regression models started producing weights in the magnitude of 10^12 figures, leading to infinities after applying np.exp(). The only change? The Databricks instance type!" />
 <link rel="canonical" href="http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html" />
 <meta property="og:url" content="http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html" />
 <meta property="og:site_name" content="kevfung" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2024-09-12T08:53:16+01:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Exploding Infinities [Regression] [Machine Learning]" />
+<meta property="twitter:title" content="When Machine Learning Models Break: A Lesson in Numerical Instability [Regression] [Machine Learning]" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-09-12T08:53:16+01:00","datePublished":"2024-09-12T08:53:16+01:00","description":"When working on large-scale machine learning (ML) platforms with simplified workflow interfaces for machine learning scientists, many model implementations can become black boxes. I once worked on a particular ML platform where several linear regression models had begun producing model weights to the order of 12 significant figures, which then were subjected to an np.exp() producing infinities, and the only thing changed had been the Databricks instance type it was running on!","headline":"Exploding Infinities [Regression] [Machine Learning]","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html"},"url":"http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-09-12T08:53:16+01:00","datePublished":"2024-09-12T08:53:16+01:00","description":"In large-scale machine learning platforms with simplified workflows, model implementations can become black boxes. I once worked on such a platform where linear regression models started producing weights in the magnitude of 10^12 figures, leading to infinities after applying np.exp(). The only change? The Databricks instance type!","headline":"When Machine Learning Models Break: A Lesson in Numerical Instability [Regression] [Machine Learning]","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html"},"url":"http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="kevfung" />
 
@@ -55,7 +55,7 @@
 
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Exploding Infinities [Regression] [Machine Learning]</h1>
+    <h1 class="post-title p-name" itemprop="name headline">When Machine Learning Models Break: A Lesson in Numerical Instability [Regression] [Machine Learning]</h1>
     <p class="post-meta"><time class="dt-published" datetime="2024-09-12T08:53:16+01:00" itemprop="datePublished">
         Sep 12, 2024
       </time><!-- [Page views: <span id="page-views">Loading...</span>] -->
@@ -64,23 +64,21 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>When working on large-scale machine learning (ML) platforms with simplified workflow interfaces for machine learning scientists, many model implementations can become black boxes. I once worked on a particular ML platform where several linear regression models had begun producing model weights to the order of 12 significant figures, which then were subjected to an np.exp() producing infinities, and the only thing changed had been the Databricks instance type it was running on!</p>
+    <p>In large-scale machine learning platforms with simplified workflows, model implementations can become black boxes. I once worked on such a platform where linear regression models started producing weights in the magnitude of 10^12 figures, leading to infinities after applying np.exp(). The only change? The Databricks instance type!</p>
 
 <h6 id="diving-into-the-cause">Diving into the cause</h6>
 
-<p>Initially I thought it was a difference in how random seeds defaulted based on the internal implementation we used for regression. Fixing it did not work. I began injecting logs throughout the system, trying to understand the data at each step of the flow, perhaps the data IO step corrupted the model inputs or there was a division of zero happening due to numerical precision? Only at the modelling step I discovered the models had extremely high condition numbers!</p>
+<p>Initially I thought it was a difference in how random seeds defaulted based on the internal implementation we used for regression. Fixing it did not work. I injected logs throughout the system, trying to understand the data at each step of the flow, perhaps the data IO step corrupted the model inputs or there was a division of zero happening due to numerical precision? Only at the modelling step I discovered the models had extremely high condition numbers!</p>
 
-<p>The workflow was using an internal component that transformed the dataset to keep only a large group of one hot encoded features to predict the target labels. The result was a highly sparse, 300+ column dataset with a significant portion of duplicated rows corresponding to a different label each. The models were solved via OLS, the common implementation calculates the pseudo-inverse of the matrix, thus attempting to solve an extremely ill-conditioned matrix naturally produced numerical instability down to machine level precision in its calculations - hence our exploding infinities!</p>
-
-<p>What might have worked on one machine type, wouldn’t necessarily always work on another, this becomes problematic when workflows aren’t properly containerised making models effectively dependent on the machine architecture. From an engineering perspective, this also reduces the number of infrastructure options available when designing cost efficient ML systems and pipelines.</p>
+<p>The workflow was using an internal component that transformed the dataset to keep only a large group of one hot encoded features to predict the target labels. The result was a highly sparse, massive columnar dataset with many duplicated rows (and each with a different label!). The models were solved via OLS, where its implementation calculates the pseudo-inverse of the matrix - thus attempting to solve an extremely ill-conditioned matrix was naturally producing numerical instability down to machine level precision in its calculations.</p>
 
 <h6 id="controlling-the-explosion">Controlling the explosion</h6>
 
-<p>There were a number of ways to solve this practically. Containerising applications makes sense if not constrained by the scale and complexity of the platform and the initial motivation to change machine types in the first place. Since OLS was used, we could have used SGD as the replacement solver given it’s iterative nature. The trade-off would be an impact to the “understood performance” of the model and convergence time, however this would solve the issue of exploding values.</p>
+<p>There were several practical solutions to tackle this issue. One approach was containerizing the applications, which would ensure consistency across different machine types, as long as the platform’s scale and complexity allowed for it. Since we were using OLS, switching to an iterative solver like SGD could have resolved the exploding values. While this might have impacted the model’s perceived performance and increased convergence time, it would have provided more stability.</p>
 
-<p>Applying regularisation was another way. Introducing a bias term to the dataset could have stabilised the solver. There are many different regularisations that can be used like L1 and L2 biases. However, if one was only interested in attaining the most accurate model weights in the problem, the precision of these weights will be affected. This was the case our model was attempting to solve.</p>
+<p>Another option was to apply regularization, introducing a bias term to stabilize the solver. Techniques like L1 or L2 regularization could have helped, though they might sacrifice some precision in the model weights. Given that accuracy was crucial for our specific use case, this trade-off would need careful consideration.</p>
 
-<p>In the end, simply removing the infinities would not truly solve the nature of the problem that the model had set out to solve. Thus we turned to changing the methodology that would avoid our issue of numerical stability. Since we were dealing with an inverse optimisation problem, and given the non-linearity of the problem itself, non-convex solutions were finally investigated.</p>
+<p>In the end, the solution wasn’t just removing infinities. We had to rethink the methodology, focusing on non-convex solutions to handle the inverse optimization problem and improve numerical stability.</p>
 
 <p><br /></p>
 
