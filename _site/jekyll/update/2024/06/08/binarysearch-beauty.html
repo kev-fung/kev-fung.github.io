@@ -3,21 +3,21 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Binary Search Beauty [Leetcode] [Problem Solving] | kevfung</title>
+<title>Binary Search Beauty [Problem Solving] | kevfung</title>
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="Binary Search Beauty [Leetcode] [Problem Solving]" />
+<meta property="og:title" content="Binary Search Beauty [Problem Solving]" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Binary search is as the name implies, it searches for something by splitting and only considering either left or right halfs of an array. But how to properly understand this?" />
-<meta property="og:description" content="Binary search is as the name implies, it searches for something by splitting and only considering either left or right halfs of an array. But how to properly understand this?" />
+<meta name="description" content="Binary search is as the name implies, it searches for something by splitting and only considering either the left or right halves of an array. Should be simple, but can be confusing so - how do we properly understand this?" />
+<meta property="og:description" content="Binary search is as the name implies, it searches for something by splitting and only considering either the left or right halves of an array. Should be simple, but can be confusing so - how do we properly understand this?" />
 <link rel="canonical" href="http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty.html" />
 <meta property="og:url" content="http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty.html" />
 <meta property="og:site_name" content="kevfung" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2024-06-08T08:53:16+01:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Binary Search Beauty [Leetcode] [Problem Solving]" />
+<meta property="twitter:title" content="Binary Search Beauty [Problem Solving]" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-06-08T08:53:16+01:00","datePublished":"2024-06-08T08:53:16+01:00","description":"Binary search is as the name implies, it searches for something by splitting and only considering either left or right halfs of an array. But how to properly understand this?","headline":"Binary Search Beauty [Leetcode] [Problem Solving]","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty.html"},"url":"http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-06-08T08:53:16+01:00","datePublished":"2024-06-08T08:53:16+01:00","description":"Binary search is as the name implies, it searches for something by splitting and only considering either the left or right halves of an array. Should be simple, but can be confusing so - how do we properly understand this?","headline":"Binary Search Beauty [Problem Solving]","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty.html"},"url":"http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="kevfung" />
 
@@ -55,7 +55,7 @@
 
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Binary Search Beauty [Leetcode] [Problem Solving]</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Binary Search Beauty [Problem Solving]</h1>
     <p class="post-meta"><time class="dt-published" datetime="2024-06-08T08:53:16+01:00" itemprop="datePublished">
         Jun 8, 2024
       </time><!-- [Page views: <span id="page-views">Loading...</span>] -->
@@ -64,51 +64,61 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Binary search is as the name implies, it searches for something by splitting and only considering either left or right halfs of an array. But how to properly understand this?</p>
+    <p>Binary search is as the name implies, it searches for something by splitting and only considering either the left or right halves of an array. Should be simple, but can be confusing so - how do we properly understand this?</p>
 
 <p>In short:</p>
 
 <p>Binary search finds the MINIMUM value that satisfies the condition you provide it.</p>
 
-<p>The classic binary search problem where it asks to find a value in an array is one of the biggest pitfalls into thinking that there is some notion of a mid-way value to return, and it also makes you think there’s a need to always sort the value. But this is WRONG THINKING for binary search.</p>
+<p>Why?</p>
 
-<p>In reality, binary search only considers a binary condition - true or false. And depending on which, we will traverse down either the left or right parts.</p>
+<p>The classic binary search problem where it asks to find a value in a sorted array is one of the biggest pitfalls into thinking that the implementation must separate the search into three part, the left, the middle, and the right part. This is the WRONG THINKING for binary search, and it does not generalise to harder problems requiring binary search.</p>
 
-<p>However - how do we return the value that we want? If we only consider left and right parts how do we also include the middle part (the value which we check)?</p>
+<p>The generalised implementation of binary search only needs to split the search into two parts, the left and the right - because binary search only considers a binary condition - true or false. Depending on which, we will traverse down either left or right parts. This is obvious.</p>
+
+<p>The crux of the issue comes however, when we ask ourselves, how do we return the value we want? If we only consider left and right parts how do we also include the middle part (the value which we check)? The simple implementation would have just returned the middle part, but this time we only have the left and right parts.</p>
 
 <p>This is when we must determine if we should include the middle part as always the “left part” or the “right part”.</p>
 
 <p>Imagine a problem to find the first “X” in this array of X and O.</p>
 
-<p>OOOOOXXXX</p>
+<p><strong>OOOOOXXXXXXX</strong></p>
 
 <p>Now say we run our binary search and eventually we reach some point where we’re only considering the subarray:</p>
 
-<p>OXXXXXX</p>
+<p><strong>OXXXX</strong></p>
 
-<p>If we look at this, our midpoint is X (and is also the global answer to our asked problem) we should see that if we attempt to include this X to the right part of the midpoint, we’re going to be way off from the true answer! Therefore it only makes sense to consider our target/ midway-value to be in the left half always.</p>
+<p>If we look at this, our current midpoint is X (which is also the global answer to our example problem - but not the first X in this subarray of X’s!) and we should see that because we’re in the middle of the right part, we can do better and keep looking to the left of this current search, and as we search through these X’s one of these visited X’s must be the final answer! Therefore it obvious to consider our target/midway-value to be in the right half always. This is why we next: 1) look at the left part 2) include this midway-value for our search.</p>
 
 <p>We’ll always look to search like this OX, OOX, OOOX, OOOOX, OOOOOX.</p>
 
-<p>Now we realise this, this means that our implementation will look something like:</p>
+<p>Now we realise this, our implementation will look something like:</p>
 
-<p>If condition==True:
-    update right pointer to equal to mid-way point. (i.e. only consider our left part + midway value now).
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>If condition==True:
+    update right pointer to equal to mid-way point. 
+    # (i.e. only consider our left part + midway value now).
 Else:
-    update left pointer to equal mid-way point + 1. (i.e. only consider our right part exc. Midway value now).</p>
+    update left pointer to equal mid-way point + 1. 
+    # (i.e. only consider our right part exc. midway value now). 
+</code></pre></div></div>
+
+<p>Conversely another insight here is when condition==False, our midpoint is currently in the OOO part, and we obviously don’t want to include this current midpoint in our search. Thus we exclude it from our next search by shifting left pointer to midpoint + 1.</p>
+
+<p>When the target value doesn’t exist, this algorithm will just return the next best value that meet’s the condition.</p>
 
 <p>Why does searching for values in sorted array work with binary search?</p>
 
-<p>We just need to reframe the problem. In reality, if we apply the notion of some binary domain to our problem, we’re basically saying:</p>
+<p>We just need to reframe the problem. In reality, if we apply this notion of some binary domain to our problem (e.g. OOOOXXXXXs), we’re basically saying:</p>
 
-<p>Let’s split our array into numbers smaller than or equal to the number of our interest, and numbers larger than the number of our interest.</p>
+<p>Let’s split our array into numbers smaller than the number of our interest, and numbers larger or equal to the number of our interest.</p>
 
 <p>e.g. I want to find 4 in 1234567:</p>
 
-<p>1 2 3 4 5 6 7
-OOO X X X X</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 2 3 4 5 6 7
+OOO X X X X
+</code></pre></div></div>
 
-<p>This is the same problem as what we detailed earlier.</p>
+<p>So our solution to this problem boils back to what we’ve just described.</p>
 
 <!-- You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated. This is another one!
 

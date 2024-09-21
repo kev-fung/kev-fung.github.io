@@ -1,72 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-09-20T02:28:20+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">kevfung</title><subtitle></subtitle><entry><title type="html">Exploding Infinities [Regression] [Machine Learning]</title><link href="http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html" rel="alternate" type="text/html" title="Exploding Infinities [Regression] [Machine Learning]" /><published>2024-09-12T08:53:16+01:00</published><updated>2024-09-12T08:53:16+01:00</updated><id>http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html"><![CDATA[<p>Work in progress.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-09-21T12:44:20+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">kevfung</title><subtitle></subtitle><entry><title type="html">Exploding Infinities [Regression] [Machine Learning]</title><link href="http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html" rel="alternate" type="text/html" title="Exploding Infinities [Regression] [Machine Learning]" /><published>2024-09-12T08:53:16+01:00</published><updated>2024-09-12T08:53:16+01:00</updated><id>http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html"><![CDATA[<p>When working on large-scale machine learning (ML) platforms with simplified workflow interfaces for machine learning scientists, many model implementations can become black boxes. I once worked on a particular ML platform where several linear regression models had begun producing model weights to the order of 12 significant figures, which then were subjected to an np.exp() producing infinities, and the only thing changed had been the Databricks instance type it was running on!</p>
 
-<!-- You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+<h6 id="diving-into-the-cause">Diving into the cause</h6>
 
-Jekyll requires blog post files to be named according to the following format:
+<p>Initially I thought it was a difference in how random seeds defaulted based on the internal implementation we used for regression. Fixing it did not work. I began injecting logs throughout the system, trying to understand the data at each step of the flow, perhaps the data IO step corrupted the model inputs or there was a division of zero happening due to numerical precision? Only at the modelling step I discovered the models had extremely high condition numbers!</p>
 
-`YEAR-MONTH-DAY-title.MARKUP`
+<p>The workflow was using an internal component that transformed the dataset to keep only a large group of one hot encoded features to predict the target labels. The result was a highly sparse, 300+ column dataset with a significant portion of duplicated rows corresponding to a different label each. The models were solved via OLS, the common implementation calculates the pseudo-inverse of the matrix, thus attempting to solve an extremely ill-conditioned matrix naturally produced numerical instability down to machine level precision in its calculations - hence our exploding infinities!</p>
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+<p>What might have worked on one machine type, wouldn’t necessarily always work on another, this becomes problematic when workflows aren’t properly containerised making models effectively dependent on the machine architecture. From an engineering perspective, this also reduces the number of infrastructure options available when designing cost efficient ML systems and pipelines.</p>
 
-Jekyll also offers powerful support for code snippets:
+<h6 id="controlling-the-explosion">Controlling the explosion</h6>
 
+<p>There were a number of ways to solve this practically. Containerising applications makes sense if not constrained by the scale and complexity of the platform and the initial motivation to change machine types in the first place. Since OLS was used, we could have used SGD as the replacement solver given it’s iterative nature. The trade-off would be an impact to the “understood performance” of the model and convergence time, however this would solve the issue of exploding values.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
-<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+<p>Applying regularisation was another way. Introducing a bias term to the dataset could have stabilised the solver. There are many different regularisations that can be used like L1 and L2 biases. However, if one was only interested in attaining the most accurate model weights in the problem, the precision of these weights will be affected. This was the case our model was attempting to solve.</p>
 
+<p>In the end, simply removing the infinities would not truly solve the nature of the problem that the model had set out to solve. Thus we turned to changing the methodology that would avoid our issue of numerical stability. Since we were dealing with an inverse optimisation problem, and given the non-linearity of the problem itself, non-convex solutions were finally investigated.</p>
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+<p><br /></p>
 
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/ -->]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Work in progress.]]></summary></entry><entry><title type="html">Binary Search Beauty [Leetcode] [Problem Solving]</title><link href="http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty.html" rel="alternate" type="text/html" title="Binary Search Beauty [Leetcode] [Problem Solving]" /><published>2024-06-08T08:53:16+01:00</published><updated>2024-06-08T08:53:16+01:00</updated><id>http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty.html"><![CDATA[<p>Binary search is as the name implies, it searches for something by splitting and only considering either left or right halfs of an array. But how to properly understand this?</p>
+<p>// Kudos to John and Debs when we watched F1 in the pub 🏎️</p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[When working on large-scale machine learning (ML) platforms with simplified workflow interfaces for machine learning scientists, many model implementations can become black boxes. I once worked on a particular ML platform where several linear regression models had begun producing model weights to the order of 12 significant figures, which then were subjected to an np.exp() producing infinities, and the only thing changed had been the Databricks instance type it was running on!]]></summary></entry><entry><title type="html">Binary Search Beauty [Problem Solving]</title><link href="http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty.html" rel="alternate" type="text/html" title="Binary Search Beauty [Problem Solving]" /><published>2024-06-08T08:53:16+01:00</published><updated>2024-06-08T08:53:16+01:00</updated><id>http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/06/08/binarysearch-beauty.html"><![CDATA[<p>Binary search is as the name implies, it searches for something by splitting and only considering either the left or right halves of an array. Should be simple, but can be confusing so - how do we properly understand this?</p>
 
 <p>In short:</p>
 
 <p>Binary search finds the MINIMUM value that satisfies the condition you provide it.</p>
 
-<p>The classic binary search problem where it asks to find a value in an array is one of the biggest pitfalls into thinking that there is some notion of a mid-way value to return, and it also makes you think there’s a need to always sort the value. But this is WRONG THINKING for binary search.</p>
+<p>Why?</p>
 
-<p>In reality, binary search only considers a binary condition - true or false. And depending on which, we will traverse down either the left or right parts.</p>
+<p>The classic binary search problem where it asks to find a value in a sorted array is one of the biggest pitfalls into thinking that the implementation must separate the search into three part, the left, the middle, and the right part. This is the WRONG THINKING for binary search, and it does not generalise to harder problems requiring binary search.</p>
 
-<p>However - how do we return the value that we want? If we only consider left and right parts how do we also include the middle part (the value which we check)?</p>
+<p>The generalised implementation of binary search only needs to split the search into two parts, the left and the right - because binary search only considers a binary condition - true or false. Depending on which, we will traverse down either left or right parts. This is obvious.</p>
+
+<p>The crux of the issue comes however, when we ask ourselves, how do we return the value we want? If we only consider left and right parts how do we also include the middle part (the value which we check)? The simple implementation would have just returned the middle part, but this time we only have the left and right parts.</p>
 
 <p>This is when we must determine if we should include the middle part as always the “left part” or the “right part”.</p>
 
 <p>Imagine a problem to find the first “X” in this array of X and O.</p>
 
-<p>OOOOOXXXX</p>
+<p><strong>OOOOOXXXXXXX</strong></p>
 
 <p>Now say we run our binary search and eventually we reach some point where we’re only considering the subarray:</p>
 
-<p>OXXXXXX</p>
+<p><strong>OXXXX</strong></p>
 
-<p>If we look at this, our midpoint is X (and is also the global answer to our asked problem) we should see that if we attempt to include this X to the right part of the midpoint, we’re going to be way off from the true answer! Therefore it only makes sense to consider our target/ midway-value to be in the left half always.</p>
+<p>If we look at this, our current midpoint is X (which is also the global answer to our example problem - but not the first X in this subarray of X’s!) and we should see that because we’re in the middle of the right part, we can do better and keep looking to the left of this current search, and as we search through these X’s one of these visited X’s must be the final answer! Therefore it obvious to consider our target/midway-value to be in the right half always. This is why we next: 1) look at the left part 2) include this midway-value for our search.</p>
 
 <p>We’ll always look to search like this OX, OOX, OOOX, OOOOX, OOOOOX.</p>
 
-<p>Now we realise this, this means that our implementation will look something like:</p>
+<p>Now we realise this, our implementation will look something like:</p>
 
-<p>If condition==True:
-    update right pointer to equal to mid-way point. (i.e. only consider our left part + midway value now).
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>If condition==True:
+    update right pointer to equal to mid-way point. 
+    # (i.e. only consider our left part + midway value now).
 Else:
-    update left pointer to equal mid-way point + 1. (i.e. only consider our right part exc. Midway value now).</p>
+    update left pointer to equal mid-way point + 1. 
+    # (i.e. only consider our right part exc. midway value now). 
+</code></pre></div></div>
+
+<p>Conversely another insight here is when condition==False, our midpoint is currently in the OOO part, and we obviously don’t want to include this current midpoint in our search. Thus we exclude it from our next search by shifting left pointer to midpoint + 1.</p>
+
+<p>When the target value doesn’t exist, this algorithm will just return the next best value that meet’s the condition.</p>
 
 <p>Why does searching for values in sorted array work with binary search?</p>
 
-<p>We just need to reframe the problem. In reality, if we apply the notion of some binary domain to our problem, we’re basically saying:</p>
+<p>We just need to reframe the problem. In reality, if we apply this notion of some binary domain to our problem (e.g. OOOOXXXXXs), we’re basically saying:</p>
 
-<p>Let’s split our array into numbers smaller than or equal to the number of our interest, and numbers larger than the number of our interest.</p>
+<p>Let’s split our array into numbers smaller than the number of our interest, and numbers larger or equal to the number of our interest.</p>
 
 <p>e.g. I want to find 4 in 1234567:</p>
 
-<p>1 2 3 4 5 6 7
-OOO X X X X</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 2 3 4 5 6 7
+OOO X X X X
+</code></pre></div></div>
 
-<p>This is the same problem as what we detailed earlier.</p>
+<p>So our solution to this problem boils back to what we’ve just described.</p>
 
 <!-- You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated. This is another one!
 
@@ -91,4 +97,4 @@ Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most ou
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/ -->]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Binary search is as the name implies, it searches for something by splitting and only considering either left or right halfs of an array. But how to properly understand this?]]></summary></entry></feed>
+[jekyll-talk]: https://talk.jekyllrb.com/ -->]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Binary search is as the name implies, it searches for something by splitting and only considering either the left or right halves of an array. Should be simple, but can be confusing so - how do we properly understand this?]]></summary></entry></feed>
