@@ -808,7 +808,7 @@ table td {
 }
 .me-image-container {
   position: relative;
-  top: 0px;
+  top: -15px;
   left: -20px;
   width: 180px;
   height: 365px;
