@@ -409,10 +409,34 @@
   }
 }
 
+// .me-image-container {
+//   position: relative;
+//   top: -15px;
+//   left: -20px;
+//   width: 180px;
+//   height: 365px;
+//   display: inline-block;
+//   flex-shrink: 0;
+//   overflow: hidden; /* Ensures that any overflow from the image is hidden (for cropping) */
+// }
+
+// .image-shadow {
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow under the image */
+// }
+
+// .image {
+//   width: 100%; /* Make the image fill the container width */
+//   height: auto; /* Keep aspect ratio */
+//   min-height: 100%; /* Ensure the image covers the container height */
+//   object-fit: cover; /* Ensure the image covers the container, cropping any excess */
+//   position: relative; /* Ensures the image stays within the container's dimensions */
+//   clip-path: inset(20px 0 0 0); /* Apply cropping from the top */
+// }
+
 
 .me-image-container {
   position: relative;
-  top: -15px;
+  top: -0px;
   left: -20px;
   width: 180px;
   height: 365px;
@@ -421,6 +445,12 @@
   // flex: 1;
 }
 
+.image-shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Horizontal, vertical, blur radius, shadow color */
+  // border-radius: 80px; /* Optional: to make the edges rounded */
+}
+
+
 .image {
   // position: absolute;
   width: auto; /* Make the image 80% of the container width */
@@ -428,6 +458,7 @@
   // margin-right: 0;
   float: right;
   // right:0;
+
   clip-path: inset(20px 0 0 0); /* Crop 100px from the right */
 }
 

@@ -808,12 +808,16 @@ table td {
 }
 .me-image-container {
   position: relative;
-  top: -15px;
+  top: 0px;
   left: -20px;
   width: 180px;
   height: 365px;
   display: inline-block; /* Ensures div width/height is respected */
   flex-shrink: 0;
+}
+
+.image-shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Horizontal, vertical, blur radius, shadow color */
 }
 
 .image {
