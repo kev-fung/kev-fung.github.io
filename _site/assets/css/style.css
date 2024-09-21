@@ -869,6 +869,7 @@ main {
   position: relative; /* Allows precise positioning */
   left: 15px; /* Moves the box to the right of the image div by 30px */
   padding: 0px; /* Optional padding for the box */
+  top: -10px;
   font-size: 12px;
   margin-top: 100px;
   font-family: Jost;
