@@ -11,7 +11,9 @@ In large-scale machine learning platforms with simplified workflows, model imple
 
 Initially I thought it was a difference in how random seeds defaulted based on the internal implementation we used for regression. Fixing it did not work. I injected logs throughout the system, trying to understand the data at each step of the flow, perhaps the data IO step corrupted the model inputs or there was a division of zero happening due to numerical precision? Only at the modelling step I discovered the models had extremely high condition numbers!
 
-The workflow was using an internal component that transformed the dataset to keep only a large group of one hot encoded features to predict the target labels. The result was a highly sparse, massive columnar dataset with many duplicated rows (and each with a different label!). The models were solved via OLS, where its implementation calculated the pseudo-inverse of the matrix - thus it was attempting to solve an extremely ill-conditioned matrix and this was naturally producing numerical instability down to the machine level precision in its calculations.
+The workflow was using an internal component that transformed the dataset to keep only a large group of one hot encoded features to predict the target labels. The result was a highly sparse, massive columnar dataset with many duplicated rows (and each with a different label!). The models were solved via OLS, where its implementation calculated the pseudo-inverse of the matrix - thus it was attempting to solve an extremely ill-conditioned matrix and this was naturally producing numerical instability down to the machine level precision in its calculations!
+
+The objective of the workflow was to predict the weights for every combination of categorical variables, rather than the label data - this was effectively an inverse problem we were trying to solve.
 
 ###### Controlling the explosion
 
@@ -19,7 +21,7 @@ There were several practical solutions to tackle this issue. One approach was to
 
 Another option was to apply regularization by introducing a bias term to stabilize the solver. Techniques like L1 or L2 regularization could have helped, although they would have sacrificed some precision in the model weights. Accuracy was crucial for our specific use case, so this trade-off required careful consideration along with Machine Learning Scientists.
 
-However, to truly solve this case, the solution wasn’t just about removing infinities - the entire methodology itself had to be reconsidered. Overall, this was a reminder to me of the importance of taking numerical stability into consideration when deriving machine learning solutions.
+What you should realise by now is that despite the possible mathematical and computational solutions to remove the infinities, the wiser decision was to reconsider the existing methodology. The business problem the workflow was constrained to was definitely a hard problem to solve - however this experience has reminded me the importance of taking into consideration numerical stability (and fundamentally how numerical models are solved) when building machine learning solutions and it should be part of any ML practioners toolkit.
 
 <br>
 
