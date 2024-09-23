@@ -21,7 +21,7 @@ There were several practical solutions to tackle this issue. One approach was to
 
 Another option was to apply regularization by introducing a bias term to stabilize the solver. Techniques like L1 or L2 regularization could have helped, although they would have sacrificed some precision in the model weights. Accuracy was crucial for our specific use case, so this trade-off required careful consideration with the researchers.
 
-What you should realise by now is that despite the possible mathematical and computational solutions to remove the infinities, the wiser decision was to reconsider the existing methodology. The business problem the workflow was constrained to was definitely a hard problem to solve - however this experience has reminded me the importance of taking into consideration numerical stability (and fundamentally how numerical models are solved) when building machine learning solutions and it should be part of any ML practioners toolkit.
+What you should realise by now is that despite the possible mathematical and computational solutions to remove the infinities, the longer term (and probably wisest) decision was to reconsider the existing methodology again. The business problem the workflow was constrained to was definitely a hard problem to solve - however this experience has reminded me the importance of taking into consideration numerical stability (and fundamentally how numerical models are solved) when building machine learning solutions and it should be part of any ML practioners toolkit.
 
 <br>
 
