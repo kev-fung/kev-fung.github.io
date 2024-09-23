@@ -25,4 +25,4 @@ What you should realise by now is that despite the possible mathematical and com
 
 <br>
 
-// Shout out to John and Debs 🏎️
+// Shout out to John and Debs for the discussions we had over this topic 🏎️
