@@ -5,7 +5,7 @@ date:   2024-09-12 08:53:16 +0100
 categories: jekyll update
 ---
 
-In large-scale machine learning platforms, one may come across heavily abstracted workflows where model implementations and methods can suddenly become black boxes to a researcher. I once worked on such a platform where linear regression models started producing weights in the magnitude of $10^12$ figures, leading to sudden infinities after it applied an np.exp() to every weight. The only change I made was the EC2 instance type!
+In large-scale machine learning platforms, one may come across heavily abstracted workflows where model implementations and methods can suddenly become black boxes to a researcher. I once worked on such a platform where linear regression models started producing weights in the magnitude of 10^12figures, leading to sudden infinities after it applied an np.exp() to every weight. The only change I made was the EC2 instance type!
 
 ###### Diving into the cause
 
@@ -21,7 +21,7 @@ There were several practical solutions to tackle this issue. One approach was to
 
 Another option was to apply regularization by introducing a bias term to stabilize the solver. Techniques like L1 or L2 regularization could have helped, although they would have sacrificed some precision in the model weights. Accuracy was crucial for our specific use case, so this trade-off required careful consideration with the researchers.
 
-What you should realise by now is that despite the possible mathematical and computational solutions to remove the infinities, the longer term (and probably wisest) decision was to reconsider the methodology again. The business problem the workflow was constrained to was definitely a hard problem to solve - however this experience has reminded me of the importance of numerical stability (and fundamentally how numerical models are solved) when building machine learning solutions and it should be a part of any ML practioners toolkit!
+What you should realise by now is that despite the possible mathematical and computational solutions to remove the infinities, the longer term (and probably wisest) decision was to reconsider the methodology again. The business problem the workflow was constrained to was definitely a hard problem to solve - however this experience has reminded me of the importance of numerical stability (and fundamentally how numerical models are solved) when building machine learning solutions and it should be a part of any ML practitioners toolkit!
 
 <br>
 

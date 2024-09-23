@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.3" />
 <meta property="og:title" content="When Machine Learning Models Break: A Lesson in Numerical Instability [Regression] [Machine Learning]" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="In large-scale machine learning platforms, one may come across heavily abstracted workflows where model implementations and methods can suddenly become black boxes to a researcher. I once worked on such a platform where linear regression models started producing weights in the magnitude of $10^12$ figures, leading to sudden infinities after it applied an np.exp() to every weight. The only change I made was the EC2 instance type!" />
-<meta property="og:description" content="In large-scale machine learning platforms, one may come across heavily abstracted workflows where model implementations and methods can suddenly become black boxes to a researcher. I once worked on such a platform where linear regression models started producing weights in the magnitude of $10^12$ figures, leading to sudden infinities after it applied an np.exp() to every weight. The only change I made was the EC2 instance type!" />
+<meta name="description" content="In large-scale machine learning platforms, one may come across heavily abstracted workflows where model implementations and methods can suddenly become black boxes to a researcher. I once worked on such a platform where linear regression models started producing weights in the magnitude of 10^12figures, leading to sudden infinities after it applied an np.exp() to every weight. The only change I made was the EC2 instance type!" />
+<meta property="og:description" content="In large-scale machine learning platforms, one may come across heavily abstracted workflows where model implementations and methods can suddenly become black boxes to a researcher. I once worked on such a platform where linear regression models started producing weights in the magnitude of 10^12figures, leading to sudden infinities after it applied an np.exp() to every weight. The only change I made was the EC2 instance type!" />
 <link rel="canonical" href="http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html" />
 <meta property="og:url" content="http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html" />
 <meta property="og:site_name" content="kkyfung" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="When Machine Learning Models Break: A Lesson in Numerical Instability [Regression] [Machine Learning]" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-09-12T08:53:16+01:00","datePublished":"2024-09-12T08:53:16+01:00","description":"In large-scale machine learning platforms, one may come across heavily abstracted workflows where model implementations and methods can suddenly become black boxes to a researcher. I once worked on such a platform where linear regression models started producing weights in the magnitude of $10^12$ figures, leading to sudden infinities after it applied an np.exp() to every weight. The only change I made was the EC2 instance type!","headline":"When Machine Learning Models Break: A Lesson in Numerical Instability [Regression] [Machine Learning]","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html"},"url":"http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-09-12T08:53:16+01:00","datePublished":"2024-09-12T08:53:16+01:00","description":"In large-scale machine learning platforms, one may come across heavily abstracted workflows where model implementations and methods can suddenly become black boxes to a researcher. I once worked on such a platform where linear regression models started producing weights in the magnitude of 10^12figures, leading to sudden infinities after it applied an np.exp() to every weight. The only change I made was the EC2 instance type!","headline":"When Machine Learning Models Break: A Lesson in Numerical Instability [Regression] [Machine Learning]","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html"},"url":"http://localhost:4000/jekyll/update/2024/09/12/exploding-infinities.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="kkyfung" />
 
@@ -64,7 +64,7 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>In large-scale machine learning platforms, one may come across heavily abstracted workflows where model implementations and methods can suddenly become black boxes to a researcher. I once worked on such a platform where linear regression models started producing weights in the magnitude of $10^12$ figures, leading to sudden infinities after it applied an np.exp() to every weight. The only change I made was the EC2 instance type!</p>
+    <p>In large-scale machine learning platforms, one may come across heavily abstracted workflows where model implementations and methods can suddenly become black boxes to a researcher. I once worked on such a platform where linear regression models started producing weights in the magnitude of 10^12figures, leading to sudden infinities after it applied an np.exp() to every weight. The only change I made was the EC2 instance type!</p>
 
 <h6 id="diving-into-the-cause">Diving into the cause</h6>
 
@@ -80,7 +80,7 @@
 
 <p>Another option was to apply regularization by introducing a bias term to stabilize the solver. Techniques like L1 or L2 regularization could have helped, although they would have sacrificed some precision in the model weights. Accuracy was crucial for our specific use case, so this trade-off required careful consideration with the researchers.</p>
 
-<p>What you should realise by now is that despite the possible mathematical and computational solutions to remove the infinities, the longer term (and probably wisest) decision was to reconsider the methodology again. The business problem the workflow was constrained to was definitely a hard problem to solve - however this experience has reminded me of the importance of numerical stability (and fundamentally how numerical models are solved) when building machine learning solutions and it should be a part of any ML practioners toolkit!</p>
+<p>What you should realise by now is that despite the possible mathematical and computational solutions to remove the infinities, the longer term (and probably wisest) decision was to reconsider the methodology again. The business problem the workflow was constrained to was definitely a hard problem to solve - however this experience has reminded me of the importance of numerical stability (and fundamentally how numerical models are solved) when building machine learning solutions and it should be a part of any ML practitioners toolkit!</p>
 
 <p><br /></p>
 
