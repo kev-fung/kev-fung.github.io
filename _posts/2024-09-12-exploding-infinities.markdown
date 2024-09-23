@@ -25,4 +25,4 @@ What you should realise by now is that despite the possible mathematical and com
 
 <br>
 
-// Kudos to John and Debs when we watched F1 in the pub 🏎️
+// Shout out to John and Debs 🏎️
