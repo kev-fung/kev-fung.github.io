@@ -5,7 +5,7 @@ date:   2024-09-12 08:53:16 +0100
 categories: jekyll update
 ---
 
-In large-scale machine learning platforms, one may come across heavily abstracted workflows where model implementations and methods can suddenly become black boxes to a researcher. I once worked on such a platform where linear regression models started producing weights in the magnitude of 10^12 figures, leading to sudden infinities after it applied an np.exp() to every weight. The only change I made was the EC2 instance type!
+In large-scale machine learning platforms, one may come across heavily abstracted workflows where model implementations and methods can suddenly become black boxes to a researcher. I once worked on such a platform where linear regression models started producing weights in the magnitude of 10^12 figures, leading to sudden infinities after it applied an np.exp() to every weight. The only change I made was the EC2 instance type the workflow ran on!
 
 ###### Diving into the cause
 
