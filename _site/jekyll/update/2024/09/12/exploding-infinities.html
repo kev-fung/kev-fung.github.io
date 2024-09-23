@@ -76,9 +76,9 @@
 
 <h6 id="controlling-the-explosion">Controlling the explosion</h6>
 
-<p>There were several practical solutions to tackle this issue. One approach was to properly containerise the application, which would ensure consistency across different machine types, as long as the platform’s scale and complexity allowed for it. Since we were using OLS, switching to an iterative solver like SGD could have resolved the exploding values. While this might have impacted the model’s perceived performance and increased convergence time, it would at least have provided more stability.</p>
+<p>There were several practical solutions to tackle this issue. One approach was to properly containerise the application, which would ensure consistency across different machine types as long as the platform’s scale and complexity allowed for it. Since we were using OLS, switching to an iterative solver like SGD could have resolved the exploding values. While this might have impacted the model’s perceived performance and increased convergence time, it would at least have provided more stability.</p>
 
-<p>Another option was to apply regularization by introducing a bias term to stabilize the solver. Techniques like L1 or L2 regularization could have helped, although they would have sacrificed some precision in the model weights. Accuracy was crucial for our specific use case, so this trade-off required careful consideration along with Machine Learning Scientists.</p>
+<p>Another option was to apply regularization by introducing a bias term to stabilize the solver. Techniques like L1 or L2 regularization could have helped, although they would have sacrificed some precision in the model weights. Accuracy was crucial for our specific use case, so this trade-off required careful consideration with the researchers.</p>
 
 <p>What you should realise by now is that despite the possible mathematical and computational solutions to remove the infinities, the wiser decision was to reconsider the existing methodology. The business problem the workflow was constrained to was definitely a hard problem to solve - however this experience has reminded me the importance of taking into consideration numerical stability (and fundamentally how numerical models are solved) when building machine learning solutions and it should be part of any ML practioners toolkit.</p>
 
