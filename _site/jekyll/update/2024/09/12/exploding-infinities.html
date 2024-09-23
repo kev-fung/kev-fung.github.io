@@ -72,7 +72,7 @@
 
 <p>The workflow was using an internal component that transformed the dataset to keep only a large group of one hot encoded features to predict the target labels. The result was a highly sparse, massive columnar dataset with many duplicated rows (and each with a different label!). The models were solved via OLS, where its implementation calculated the pseudo-inverse of the matrix - thus it was attempting to solve an extremely ill-conditioned matrix and this was naturally producing numerical instability down to the machine level precision in its calculations!</p>
 
-<p>The objective of the workflow was to predict the weights for every combination of categorical variables, rather than the label data - this was effectively an inverse problem we were trying to solve.</p>
+<p>The objective of the workflow was to optimise the weights for every combination of categorical variables through its regression models, rather than predict the label data it was given - we were effectively solving a model inverse problem.</p>
 
 <h6 id="controlling-the-explosion">Controlling the explosion</h6>
 
