@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Understanding Binary Search [Problem Solving]"
+title:  "Understanding binary search [Problem Solving]"
 date:   2024-06-08 08:53:16 +0100
 categories: jekyll update
 ---
