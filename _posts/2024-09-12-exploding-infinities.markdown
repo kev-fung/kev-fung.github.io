@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "When machine learning models break: A lesson in numerical instability [Regression] [Machine Learning]"
+title:  "When machine learning models break: A lesson in numerical instability"
 date:   2024-09-12 08:53:16 +0100
 categories: jekyll update
 ---
