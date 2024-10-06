@@ -437,7 +437,7 @@
 .me-image-container {
   position: relative;
   top: -15px;
-  left: -20px;
+  left: -35px;
   width: 180px;
   height: 365px;
   display: inline-block; /* Ensures div width/height is respected */
@@ -522,7 +522,7 @@ main {
 
 .right-box {
   position: relative; /* Allows precise positioning */
-  left: 15px; /* Moves the box to the right of the image div by 30px */
+  left: 10px; /* Moves the box to the right of the image div by 30px */
   // top: 100px; /* Align the top of the box halfway down the image div */
   // transform: translateY(-50%); /* Center the box vertically based on its height */
   // background-color: lightblue; /* Optional: visual aid */
@@ -568,7 +568,7 @@ main {
   // flex: 1;
   position: relative;
   top: 0px;
-  left: 15px;
+  left: 10px;
   padding: 0px;
   // clear: left !important;
   margin-top: 30px;
