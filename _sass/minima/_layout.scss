@@ -606,10 +606,10 @@ main {
   // display: inline-block;
   // flex: 1;
   position: relative;
-  top: 0px;
+  top: 0px !important;
   left: 10px;
   padding: 0px;
-  // clear: left !important;
+  clear: left !important;
   margin-top: 30px;
   // background-color: #E5E5E5; /* Example background color */
   // z-index: 2 !important;

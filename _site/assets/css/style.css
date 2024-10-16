@@ -938,9 +938,10 @@ main {
 
 .blog-posts {
   position: relative;
-  top: 0px;
+  top: 0px !important;
   left: 10px;
   padding: 0px;
+  clear: left !important;
   margin-top: 30px;
   margin-bottom: 0;
 }
@@ -950,7 +951,20 @@ main {
   margin-top: 0px !important; /* Moves the box down by 50px from the top of the page */
   clear: both;
   flex-grow: 1; /* Make sure this div takes up the remaining space */
+  flex: 0 0 auto;
+  /* margin-bottom: 0; */
 }
+
+.blog-posts-bg-2 {
+  background-color: #1B1C1E; /* Background color for the box */
+  margin-top: 0px !important; /* Moves the box down by 50px from the top of the page */
+  clear: both;
+  flex-grow: 1; /* Make sure this div takes up the remaining space */
+  /* flex: 0 0 auto; */
+  /* margin-bottom: 0; */
+
+}
+
 
 .blog-posts-text {
   font-weight: 400;
