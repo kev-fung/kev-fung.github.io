@@ -8,7 +8,6 @@ permalink: /notes/
 
 ---
 
-Here is a list of all the blog posts I've written.
 
 <ul>
   {% for post in site.posts %}

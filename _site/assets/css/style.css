@@ -542,13 +542,11 @@ table td {
   color: #1B1C1E !important;
   line-height: 1.5;
   display: block;
-  padding: 5px 10px;
-  margin-left: 20px;
   font-family: "Inter", sans-serif;
   font-size: 12px !important;
 }
 .site-nav .page-link:not(:last-child) {
-  margin-right: 67px !important;
+  margin-right: 30px !important;
 }
 @media screen and (min-width: 600px) {
   .site-nav {
@@ -701,6 +699,42 @@ table td {
 
 .post-link:active {
   color: #ff5722; /* Color when the link is clicked */
+}
+
+.post-link-2 {
+  display: inline;
+  color: #E5E5E5; /* Default link color */
+  text-decoration: none; /* Optional: Remove underline */
+}
+
+.list-container {
+  display: flex;
+  justify-content: space-between; /* Space between the two lists */
+  gap: 0px; /* Adjust gap as needed */
+  font-size: 12px;
+  color: #828282;
+}
+
+/* Styling for individual lists */
+.list-container ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-left: 10px;
+}
+
+/* Styling for the list items */
+.list-container li {
+  margin-bottom: 5px; /* Space between list items */
+}
+
+.post-date {
+  margin-right: 30px; /* Adjust spacing between date and content */
+  white-space: nowrap; /* Prevents the date from breaking to the next line */
+}
+
+.content-list-2 {
+  margin-left: 30px !important;
 }
 
 /**
@@ -922,6 +956,40 @@ main {
   font-weight: 400;
   font-family: "Inter";
   color: #E5E5E5;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.section-subtitle {
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.job {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.job-info {
+  width: 80%;
+}
+
+.job-date {
+  width: 20%;
+  text-align: right;
+  font-style: italic;
+  color: #555;
 }
 
 /*# sourceMappingURL=style.css.map */
