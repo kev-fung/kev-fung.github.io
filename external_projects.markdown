@@ -10,7 +10,7 @@ permalink: /external_projects/
 
 <div class="section">
     <div class="section-title">Expedia, Global Hackathon 2024</div>
-    <div class="section-subtitle">Events based travel AdCopy generation</div>
+    <div class="section-subtitle">Events Based AdCopy Content Generator</div>
     <div class="job">
         <div class="job-info">
             <ul>
@@ -23,7 +23,7 @@ permalink: /external_projects/
 
 <div class="section">
     <div class="section-title">Expedia, Global Hackathon 2023</div>
-    <div class="section-subtitle">Mobile content image generation</div>
+    <div class="section-subtitle">Mobile Ad Image Generator</div>
 
     <div class="job">
         <div class="job-info">
@@ -38,7 +38,7 @@ permalink: /external_projects/
 
 <div class="section">
     <div class="section-title">Expedia, Global Hackathon 2022</div>
-    <div class="section-subtitle">Multigroup travel bookings scheduler</div>
+    <div class="section-subtitle">Multigroup Travel Bookings Scheduler</div>
 
     <div class="job">
         <div class="job-info">
