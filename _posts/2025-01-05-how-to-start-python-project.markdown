@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "What should the first 6 months of a python data science project look like?"
+title:  "So how does one kick-off a python data science project?"
 date:   2025-01-05 08:53:16 +0100
 categories: jekyll update
 ---
@@ -35,7 +35,7 @@ If your end goal is a project others can install, import, test, or deploy, packa
 This isn’t just about packaging - it’s also about pipelines. Once you understand how your code flows from ingestion → preprocessing → modelling → evaluation → deployment, structuring a project becomes almost mechanical.
 And if the end state is a shared repo (and it almost always is), you’ll thank yourself when your project works cleanly with GitHub and CI/CD from day one.
 
-###### Go for templates (get an LLM to make one!) - don’t reinvent the wheel
+###### Go for templates (or get an LLM to make one!) - don’t reinvent the wheel
 There are excellent starter templates, cookiecutters, and opinionated structures out there. Use them. I used to think using a template was cheating; now I think not using a template is self-sabotage.
 With the rise of AI agents, we’re heading toward a world where the internet can generate a full project scaffold for you.
 
