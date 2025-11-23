@@ -23,7 +23,7 @@ These days, whenever I feel the urge to build something "elegant" I take a step 
 I used to modularise everything because "that's what good engineers do." I've learned to wait. True modularisation becomes valuable only when the project starts forming deeper logical layers and when you naturally notice repeated logic or conceptual boundaries that deserve separation.
 But even more important than modular structure, ironically, is naming. Segmentation of logic does not need to be made materialistically with directories, one can also add the segmentation to the names of files and folders in the form of prefixes and suffixes instead, avoiding deeply nested modules and sometimes complex import handling. Also, in the age of AI-assisted coding, file names, function names, and module names have become surprisingly powerful. A well-named file is now part documentation, part prompt engineering. 
 
-###### Modularise where it makes sense
+###### Prepare to make variables configurable
 Another early mistake of mine: hard-coding variables because "I'll clean this up later." Later never comes.
 I now treat configuration as a first-class citizen. Global variables that touch data paths, environment settings, or model configs always go into a config file. Even for a quick experiment, it’s shocking how freeing it is to adjust parameters without digging through code cells or scripts.
 
