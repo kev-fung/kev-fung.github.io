@@ -8,11 +8,11 @@ categories: jekyll update
 I've been thinking a lot about how new Python developers/engineers, analysts, or simply fans of statistically inclined Amazonian snakes kick off their first data science projects recently. Most of us start the same way: with very little experience, very little time, and a burning need to get a POC off the ground yesterday.
 And honestly? There’s no universally "correct" way to structure a project. But after witnessing numerous projects either grow gracefully or collapse under their own weight over the last 5 years - a little foresight can extend a project's lifespan dramatically especially in a professional setting.
 
-If anyone is the same, we're usually all excited to get stuck into building that cool machine learning idea still burning in our minds... There is an urge to immediately get stuck into the code to see results. You think knowing Python and a Jupyter notebook is enough to get started, and you're confident in the setup you currently have. But it's a big mistake. You're a month working into the project now, you start producing many different iterations of the same notebook, duplicated cells all over the place containing different runs of the same experiment. Cryptic comments, unclear variable names, and maybe even a hacked up dashboard you decided to build with FastAPI exists now because you also wanted to learn something new and it also got too confusing trying to visualise all the plots you have sprawled across your notebooks.
+If anyone is the same, we're usually all excited to get stuck into building that cool machine learning idea still burning in our minds... There is an urge to immediately get stuck into the code to see results. You think knowing Python and a Jupyter notebook is enough to get started, and you're confident in the setup you currently have. But it's a big mistake. You're a month working into the project now, and you start producing many different iterations of the same notebook. Duplicated cells, cryptic comments, unclear variable names, and maybe even a hacked up dashboard you decided to build with FastAPI exists now because it got too confusing trying to visualise all the plots you have sprawled across your notebooks.
 
-So what do I suggest to minimise this? **Set breakpoints for yourself to stop and plan your project - you want to move slow to move fast.** This is a crucial point for new developers and data scientists to realise. One must take a step back, think and observe on the state of their project, then take the time out to make the many refactoring or design changes they now need to their project. Essentially - make it a habit to iteratively plan and prioritise your work as you move along with your idea. It won't be fun, but self management is a must. 
+So what do I suggest to minimise this pitfall we all usually fall into? **Set breakpoints to stop and plan the project - i.e. move slow to move fast.** This is a crucial point for new developers and data scientists to realise. One must take a step back, think and observe on the state of their project, then take the time out to make the many refactoring or design changes they now need to their project. Essentially - make it a habit to iteratively plan and prioritise your work as you move along with your idea. It won't be fun, but self management is a must. 
 
-Here are some further pointers I think about now when working on a new Python project...
+Some further pointers I think about now when I start to work on a new Python project:
 
 ###### Opt for simplicity over complexity
 
@@ -45,6 +45,6 @@ pyproject.toml is clean, modern, standardised, and tooling-friendly. And UV - th
 
 ###### And of course - there’s a whole universe beyond project setup
 Sufficient testing, reproducible environments, CI pipelines, tox configurations, orchestration workflows, dashboarding… the rabbit hole goes deep.
-But for someone starting out or someone who just wants a fast, dirty POC the principles above will keep your project alive long enough for it to matter.
+But for someone starting out or someone who just wants a fast, dirty POC the principles above will keep your project alive long enough for it to matter. Happy coding!
 
 <br>
