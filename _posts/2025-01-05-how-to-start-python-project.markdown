@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "So how does one kick-off a python data science project?"
+title:  "What should the first 6 months of a python data science project look like?"
 date:   2025-01-05 08:53:16 +0100
 categories: jekyll update
 ---
@@ -44,7 +44,7 @@ I’ve grown increasingly allergic to legacy setups like setup.py or requirement
 pyproject.toml is clean, modern, standardised, and tooling-friendly. And UV - this new, lightning-fast package manager - seems poised to become the norm. FastAPI and Streamlit adopting the new structure says a lot about where the ecosystem is heading.
 
 ###### And of course - there’s a whole universe beyond project setup
-Sufficient testing, reproducible environments, CI pipelines, tox configurations, orchestration workflows, dashboarding… the rabbit hole goes deep.
+Sufficient testing, reproducible environments, CI/CD pipelines, linters, IDE setups,  orchestration workflows, dashboarding… the rabbit hole goes deep.
 But for someone starting out or someone who just wants a fast, dirty POC the principles above will keep your project alive long enough for it to matter. Happy coding!
 
 <br>
