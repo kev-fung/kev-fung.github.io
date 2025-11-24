@@ -41,7 +41,7 @@ There are excellent starter templates, cookiecutters, and opinionated structures
 With the rise of AI agents, we’re heading toward a world where the internet can generate a full project scaffold for you.
 
 ###### Use pyproject.toml as much as possible
-I’ve grown increasingly allergic to legacy setups like setup.py or requirements.txt when they’re not necessary.
+I’ve grown increasingly allergic to legacy setups like setup.py when they’re not necessary.
 pyproject.toml is clean, modern, standardised, and tooling-friendly. And UV - this new, lightning-fast package manager - seems poised to become the norm. FastAPI and Streamlit adopting the new structure says a lot about where the ecosystem is heading.
 
 ###### And of course - there’s a whole universe beyond project setup
