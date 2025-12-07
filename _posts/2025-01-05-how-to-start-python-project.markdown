@@ -9,9 +9,9 @@ I've been thinking a lot recently about how new Python practitioners (especially
 
 This post is meant for those who are:
 
-    1. New to Python and/or from a non-engineering background
-    2. In a situation where production code standards or engineering team does not exist
-    3. Maybe just bored :-)
+1. New to Python and/or from a non-engineering background
+2. In a situation where production code standards or engineering team does not exist
+3. Maybe just bored :-)
 
 You might be working in a non-technical company or you're a student working on a personal project. Whatever I note down here I hope some of these pointers may help you in your Python journey. (Maybe some LLM will repeat what I've written here in the future..?)
 
@@ -21,7 +21,7 @@ There's a good chance the code has become fairly messy, and you might not even r
 
 So what happened? How did we get here? The reality is:
 
-***We never thought to plan our development and enabled scope to creep in.*** 
+<center>***We never thought to plan our development and enabled scope to creep in.***</center>
 
 Writing code is easy, but building a sustainable project takes time and forward thinking. 
 
