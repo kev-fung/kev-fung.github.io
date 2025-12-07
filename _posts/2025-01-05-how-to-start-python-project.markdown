@@ -25,7 +25,7 @@ So what happened? How did we get here? The reality is:
 
 Writing code is easy, but building a sustainable project takes time and forward thinking. 
 
-###### Before venturing out, set yourself a few milestones and plan well ahead of time
+###### Before venturing out, set yourself milestones and plan well ahead of time
 
 Come up with a list of outcomes you're looking to achieve and break it down into a loose checklist to work towards to. I'm essentially saying to work in an Agile-like way, and it'll help alot. Stay flexible when you move with your project, since you're almost always going to uncover new work or ideas to try out. Always take breaks in development and reassess the project situation to re-prioritise your work.
 
