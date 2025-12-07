@@ -27,7 +27,7 @@ Writing code is easy, but building a sustainable project takes time and forward 
 
 ###### Before venturing out, set yourself milestones and plan well ahead of time
 
-Come up with a list of outcomes you're looking to achieve and break it down into a loose checklist to work towards to. I'm essentially saying to work in an Agile-like way, and it'll help alot. Stay flexible when you move with your project, since you're almost always going to uncover new work or ideas to try out. Always take breaks in development and reassess the project situation to re-prioritise your work.
+Come up with a list of outcomes you're looking to achieve and break it down into a loose checklist to work towards to. I'm essentially saying to work in an Agile-like way, and it'll help alot. Stay flexible when you move with your project, since you're almost always going to uncover new work or ideas to try out. Always take breaks in development and reassess the project situation to re-prioritise work.
 
 It's important to realise that this is why the general software industry embraces Agile ways of working. Building products from prototypes (or pipelines from analytics) entails very different development journeys from each other because the former will always run into issues at scale. These are issues across all facets of engineering - maintenance, joint development, project extensibility etc. Unlike the latter type of work (prototyping/analytics), with more engineering vectors to think about requires additional thought and planning into the design of a technical project. The type of project and style of management will always influence the design of the project code.
 
