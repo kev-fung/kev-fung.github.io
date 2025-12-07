@@ -65,6 +65,10 @@ pyproject.toml is clean, modern, standardised, and tooling-friendly. And UV - th
 
 ###### And of course - there’s a whole universe beyond project setup
 Sufficient testing, reproducible environments, CI/CD pipelines, linters and formatters, IDE setups, third-party integrations, monitoring, orchestration workflows, dashboarding, agentic setups… the rabbit hole goes deep.
-But for someone starting out or someone who just wants a fast, dirty POC the principles above will keep your project alive long enough for it to matter. Happy coding!
+But for someone starting out or someone who just wants a fast, dirty POC the principles above will keep your project alive long enough for it to matter. 
+
+If you've read to the end of this post, pat yourself on the back. 
+
+Happy coding!
 
 <br>
