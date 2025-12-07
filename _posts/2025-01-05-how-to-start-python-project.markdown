@@ -34,21 +34,21 @@ It's important to realise that this is why the general software industry embrace
 
 There will definitely be a point where your code (regardless of it's development stage) will require some redesign or refactoring to make it into that product or pipeline. These are some opinionated pointers to think about to make that transition easier:
 
-###### Opt for simplicity over complexity
+###### 1. Opt for simplicity over complexity
 
 Whenever I feel the urge to build something "elegant" I take a step back. Most early projects die not from lack of sophistication, but from too much of it. A simple structure invites clarity, invites contribution, and invites the future version of yourself to understand what you were doing without swearing at Past You.
 
-###### Modularise where it makes sense
+###### 2. Modularise where it makes sense
 
 I used to modularise everything because "that's what good engineers do." I've learned to wait. True modularisation becomes valuable only when the project starts forming deeper logical layers and when you naturally notice repeated logic or conceptual boundaries that deserve separation.
 
 But even more important than modular structure, ironically, is naming. Segmentation of logic does not need to be made using only directories and packages, one can also add the segmentation to the names of files and folders in the form of prefixes and suffixes instead, avoiding deeply nested modules and simplifying import handling logic and maintenance. The filenaming vs packaging consideration becomes vital when working with frameworks that enforces a single object creation per file pattern especially at scale. Also, in the age of AI-assisted coding, file names, function names, and module names have become surprisingly powerful. A well-named file is now part documentation, part prompt engineering. 
 
-###### Prepare to make variables configurable
+###### 3. Prepare to make variables configurable
 Another early mistake of mine: hard-coding variables because "I'll clean this up later." Later never comes.
 I now treat configuration as a first-class citizen. Global variables that touch data paths, environment settings, or model configs always go into a config file. Even for a quick experiment, it’s shocking how freeing it is to adjust parameters without digging through code cells or scripts.
 
-###### Make sure you can package the project
+###### 4. Make sure you can package the project
 And yes - this means avoiding Jupyter notebooks like the plague when it comes to finally productioning your work.
 Notebooks are wonderful for exploration, terrible for everything else. They introduce hidden state, encourage bad defaults, and lock you into a workflow that doesn’t scale.
 If your end goal is a project others can install, import, test, or deploy, packaging is non-negotiable. Notebooks get in the way of that faster than anything else. 
@@ -56,11 +56,11 @@ If your end goal is a project others can install, import, test, or deploy, packa
 This isn’t just about packaging - it’s also about pipelines. Once you understand how your code flows from ingestion → preprocessing → modelling → evaluation → deployment, structuring a project becomes almost mechanical.
 And if the end state is a shared repo (and it almost always is), you’ll thank yourself when your project works cleanly with GitHub and CI/CD from day one.
 
-###### Go for templates (or get an LLM to make one!) - don’t reinvent the wheel
+###### 5. Go for templates (or get an LLM to make one!) - don’t reinvent the wheel
 There are excellent starter templates, cookiecutters, and opinionated structures out there. Use them. I used to think using a template was cheating; now I think not using a template is self-sabotage.
 With the rise of AI agents, we’re heading toward a world where the internet can generate a full project scaffold for you.
 
-###### Use pyproject.toml as much as possible
+###### 6. Use pyproject.toml as much as possible
 I’ve grown increasingly allergic to legacy setups like setup.py when they’re not necessary.
 pyproject.toml is clean, modern, standardised, and tooling-friendly. And UV - this new, lightning-fast package manager - seems poised to become the norm. FastAPI and Streamlit adopting the new structure says a lot about where the ecosystem is heading.
 
