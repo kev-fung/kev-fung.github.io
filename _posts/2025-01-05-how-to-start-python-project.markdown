@@ -22,9 +22,13 @@ Let's describe a common scenario - you've iterated on several Jupyter notebooks 
 
 There's a good chance the code has become fairly messy, and you might not even remember why you might have written some of that code! You have a friend who wants to start contributing to your project, but due to a lack of code organisation it'll take time for them to onboard. You now need to think about how to clean up the project. (which might take a while to clean up!)
 
-So what happened? How did we get here? The reality is ***we never thought to plan our development and enabled scope to creep in***. Writing code is easy, but building a sustainable project takes time and forward thinking. 
+So what happened? How did we get here? The reality is:
 
-***Before venturing out, set yourself a few milestones and plan well ahead of time*** 
+***we never thought to plan our development and enabled scope to creep in.*** 
+
+Writing code is easy, but building a sustainable project takes time and forward thinking. 
+
+***Before venturing out, set yourself a few milestones and plan well ahead of time.*** 
 
 Come up with a list of outcomes you're looking to achieve and break it down into a loose checklist to work towards to. I'm essentially saying to work in an Agile-like way, and it'll help alot. Stay flexible when you move with your project, since you're almost always going to uncover new work or ideas to try out. Always take breaks in development and reassess the project situation to re-prioritise your work.
 
