@@ -31,7 +31,7 @@ Come up with a list of outcomes you're looking to achieve and break it down into
 
 It's important to realise that this is why the general software industry embraces Agile ways of working. Building products from prototypes (or pipelines from analytics) entails very different development journeys from each other because the former will always run into issues at scale. These are issues across all facets of engineering - maintenance, joint development, project extensibility etc. Unlike the latter type of work (prototyping/analytics), with more engineering vectors to think about requires additional thought and planning into the design of a technical project. The type of project and style of management will always influence the design of the project code.
 
-There will definitely be a point where your code (regardless of it's development stage) will require some redesign or refactoring to make it into that product or pipeline. These are some opinionated pointers to think about to make that transition easier:
+There will definitely be a point where your code (regardless of it's development stage) will require some redesign or refactoring to make it into that product or pipeline. So I have written some opinionated pointers to try help make that transition easier:
 
 ###### 1. Opt for simplicity over complexity
 
