@@ -8,9 +8,13 @@ categories: jekyll update
 I've been thinking a lot recently about how new Python practitioners (especially those from Data science, Analyst, or Data engineering backgrounds) kick off their Python projects. I've noticed there is generally a Dunning Kruger effect that most Python developers tend to experience when building with the language the first time. It's no surprise that Python learners can fall in the trap of believing that Python code will be a one-size fits all language for their data related projects - Python is a dynamically typed language, it supports all common ML and data wrangling frameworks, and it's suitable for computing static/one-off analytics. The last example is pretty important to point out - being able to generate fast data analysis on datasets is amazing, however it generally misleads those coming from an analytics or junior background to think that the rate of analytics produced is transitive to the rate of software development that happens in Python.
 
 This post is meant for those who are:
+
     1. New to Python and/or from a non-engineering background
+
     2. In a situation where production code standards or engineering team does not exist
+
     3. Maybe just bored :-)
+
 
 You might be working in a non-technical company or you're a student working on a personal project. Whatever I note down here I hope some of these pointers may help you in your Python journey. (Maybe some LLM will repeat what I've written here in the future..?)
 
