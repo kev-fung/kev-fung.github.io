@@ -8,11 +8,17 @@ categories: jekyll update
 I've been thinking a lot about how new Python developers/engineers, analysts, or simply fans of statistically inclined Amazonian snakes kick off their first data science projects recently. Most of us start the same way: with very little experience, very little time, and a burning need to get a POC off the ground yesterday.
 And honestly? There’s no universally "correct" way to structure a project. But after witnessing numerous projects either grow gracefully or collapse under their own weight over the last 5 years - a little foresight can extend a project's lifespan dramatically especially in a professional setting.
 
-If anyone is the same, we're usually all excited to get stuck into building that cool machine learning idea still burning in our minds... There is the urge to immediately get stuck into the code to see results. You think knowing Python and a Jupyter notebook is enough to get started, and you're confident in the setup you currently have. But it's a big mistake. You're a month working into the project now, and you've produced many iterations of the same notebook. Duplicated cells, cryptic comments, unclear variable names, and maybe even a hacked up dashboard you decided to build with FastAPI exists now because it got too confusing trying to visualise all the plots you have sprawled across your notebooks.
+This post is meant for the newer python practictioner in a situation where no large-scale development platform or engineering teams are available to them - you might be working in a non-technical company or you're a student working on a personal project. I hope some of these pointers will help.
 
-So what do I suggest to minimise this pitfall? ***Set breakpoints and plan. Move slow to move fast.*** Come up with a list of outcomes you're looking to achieve and break it down into a loose checklist. This is a crucial point for new developers and data scientists to realise. One must take a step back, observe on the state of their project, then take the time out to make the refactoring or design changes they now need for their project to ensure it's sustainability. Essentially - make it a habit to iteratively plan and prioritise your work as you move along with your idea. It won't be fun, but self management is a must. 
+Let's describe a common scenario for newbies - you first think knowing Python and a Jupyter notebook is enough to get started and you're confident in the setup you currently have (which might just be an installation of Anaconda!). But soon after you realise you're stuck in trying to extend your project. You're a month working into the project, you've produced many iterations of the same notebook - duplicated cells, cryptic comments and variable names, and maybe even a hacked up dashboard you decided to build with Streamlit exists now because you thought it might be worthwhile to visualise all the plots you have sprawled across your notebooks! (Of course, it was a good learning opportunity to do some front-end work!)
 
-Some further pointers I think about when I start to work on a new Python project:
+So what happened? How did we get here? I think it's obvious - we **never thought to plan and allowed work scope to creep in**. Writing code is easy, but building a sustainable project takes time and forward thinking. 
+
+***Before venturing out, set yourself a few milestones and plan ahead.*** 
+
+Come up with a list of outcomes you're looking to achieve and break it down into a loose checklist to work towards to. I'm essentially telling you to work in an Agile-like way, and trust me it'll help alot. Stay flexible when you move with your project, you're almost always going to uncover new work or ideas to try out. When you come to a milestone, reassess your project situation and re-prioritise your checklist. 
+
+The type of project and style of management will influence the design of the project code. So - assuming we're now following an Agile-like process for a new project as a Python newbie, here are some opinionated pointers to think about:
 
 ###### Opt for simplicity over complexity
 
