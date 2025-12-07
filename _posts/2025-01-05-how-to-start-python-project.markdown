@@ -1,28 +1,36 @@
 ---
 layout: post
-title:  "So how does one kick-off a python data science project?"
+title:  "So how does one kick-off a Python data science project?"
 date:   2025-01-05 08:53:16 +0100
 categories: jekyll update
 ---
 
-I've been thinking a lot about how new Python developers/engineers, analysts, or simply fans of statistically inclined Amazonian snakes kick off their first data science projects recently. Most of us start the same way: with very little experience, very little time, and a burning need to get a POC off the ground yesterday.
-And honestly? There’s no universally "correct" way to structure a project. But after witnessing numerous projects either grow gracefully or collapse under their own weight over the last 5 years - a little foresight can extend a project's lifespan dramatically especially in a professional setting.
+I've been thinking a lot recently about how new Python practitioners (especially those from Data science, Analyst, or Data engineering backgrounds) kick off their Python projects. I've noticed there is generally a Dunning Kruger effect that most Python developers tend to experience when building with the language the first time. It's no surprise that Python learners can fall in the trap of believing that Python code will be a one-size fits all language for their data related projects - Python is a dynamically typed language, it supports all common ML and data wrangling frameworks, and it's suitable for computing static/one-off analytics. The last example is pretty important to point out - being able to generate fast data analysis on datasets is amazing, however it generally misleads those coming from an analytics or junior background to think that the rate of analytics produced is transitive to the rate of software development that happens in Python.
 
-This post is meant for the newer python practictioner in a situation where no large-scale development platform or engineering teams are available to them - you might be working in a non-technical company or you're a student working on a personal project. I hope some of these pointers will help.
+This post is meant for those who are:
+    1. New to Python and/or from a non-engineering background
+    2. In a situation where production code standards or engineering team does not exist
+    3. Maybe just bored :-)
 
-Let's describe a common scenario for newbies - you first think knowing Python and a Jupyter notebook is enough to get started and you're confident in the setup you currently have (which might just be an installation of Anaconda!). But soon after you realise you're stuck in trying to extend your project. You're a month working into the project, you've produced many iterations of the same notebook - duplicated cells, cryptic comments and variable names, and maybe even a hacked up dashboard you decided to build with Streamlit exists now because you thought it might be worthwhile to visualise all the plots you have sprawled across your notebooks! (Of course, it was a good learning opportunity to do some front-end work!)
+You might be working in a non-technical company or you're a student working on a personal project. Whatever I note down here I hope some of these pointers may help you in your Python journey. (Maybe some LLM will repeat what I've written here in the future..?)
 
-So what happened? How did we get here? I think it's obvious - we **never thought to plan and allowed work scope to creep in**. Writing code is easy, but building a sustainable project takes time and forward thinking. 
+Let's describe a common scenario - you've iterated on several Jupyter notebooks and your analysis looks good on your sample set of a few thousand rows. Everything looks good - you're now tasked to build a batch pipeline scaled across the entire 50TB dataset. Should be easy right? Just run the notebook in some cron scheduler (most cloud and data platform providers will support this) and scale up the cluster it's on. Cool - now over time, let's add further transformations and updates to our pipeline. We might start running into strange exceptions and warnings, but we'll just disable those warnings and monkey patch up our code to fix the exceptions. You're now several months working on your project - take a breath and look back at the code that's been written at this point. 
 
-***Before venturing out, set yourself a few milestones and plan ahead.*** 
+There's a good chance the code has become fairly messy, and you might not even remember why you might have written some of that code! You have a friend who wants to start contributing to your project, but due to a lack of code organisation it'll take time for them to onboard. You now need to think about how to clean up the project. (which might take a while to clean up!)
 
-Come up with a list of outcomes you're looking to achieve and break it down into a loose checklist to work towards to. I'm essentially telling you to work in an Agile-like way, and trust me it'll help alot. Stay flexible when you move with your project, you're almost always going to uncover new work or ideas to try out. When you come to a milestone, reassess your project situation and re-prioritise your checklist. 
+So what happened? How did we get here? We never thought to plan our development and enabled scope to creep in. Writing code is easy, but building a sustainable project takes time and forward thinking. 
 
-The type of project and style of management will influence the design of the project code. So - assuming we're now following an Agile-like process for a new project as a Python newbie, here are some opinionated pointers to think about:
+***Before venturing out, set yourself a few milestones and plan well ahead of time*** 
+
+Come up with a list of outcomes you're looking to achieve and break it down into a loose checklist to work towards to. I'm essentially saying to work in an Agile-like way, and it'll help alot. Stay flexible when you move with your project, since you're almost always going to uncover new work or ideas to try out. Always take breaks in development and reassess the project situation to re-prioritise your work.
+
+It's important to realise that this is why the general software industry embraces Agile ways of working. Building products from prototypes (or pipelines from analytics) entails very different development journeys because the former will always run into issues at scale. This is all issues encompassing all facets of engineering - maintenance, joint development, project extensibility etc. Unlike the latter type of work (prototyping/analytics), with more engineering vectors to think about requires additional thought and planning into the design of a technical project. Further, the type of project and style of management will always influence the design of the project code.
+
+There will definitely be a point where your code (regardless of it's development stage) will require some redesign or refactoring to make it into that product or pipeline. These are some opinionated pointers to think about to make that transition easier:
 
 ###### Opt for simplicity over complexity
 
-These days, whenever I feel the urge to build something "elegant" I take a step back. Most early projects die not from lack of sophistication, but from too much of it. A simple structure invites clarity, invites contribution, and invites the future version of yourself to understand what you were doing without swearing at Past You.
+Whenever I feel the urge to build something "elegant" I take a step back. Most early projects die not from lack of sophistication, but from too much of it. A simple structure invites clarity, invites contribution, and invites the future version of yourself to understand what you were doing without swearing at Past You.
 
 ###### Modularise where it makes sense
 
