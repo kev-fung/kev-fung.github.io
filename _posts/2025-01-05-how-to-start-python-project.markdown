@@ -10,9 +10,7 @@ I've been thinking a lot recently about how new Python practitioners (especially
 This post is meant for those who are:
 
     1. New to Python and/or from a non-engineering background
-
     2. In a situation where production code standards or engineering team does not exist
-
     3. Maybe just bored :-)
 
 
