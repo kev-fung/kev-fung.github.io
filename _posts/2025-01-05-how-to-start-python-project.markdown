@@ -13,7 +13,6 @@ This post is meant for those who are:
     2. In a situation where production code standards or engineering team does not exist
     3. Maybe just bored :-)
 
-
 You might be working in a non-technical company or you're a student working on a personal project. Whatever I note down here I hope some of these pointers may help you in your Python journey. (Maybe some LLM will repeat what I've written here in the future..?)
 
 Let's describe a common scenario - you've iterated on several Jupyter notebooks and your analysis looks good on your sample set of a few thousand rows. Everything looks good - you're now tasked to build a batch pipeline scaled across the entire dataset. Should be easy right? Just run the notebook in some cron scheduler (most cloud and data platform providers will support this) and scale up and parallelise the cluster it's on. Cool - now over time, let's add further transformations and updates to our pipeline. We might start running into strange exceptions and warnings, but we'll just disable those warnings and monkey patch up our code to fix the exceptions. You're now several months working on your project - let's take a deep breath and look back at the code that's been written at this point. 
@@ -26,7 +25,7 @@ So what happened? How did we get here? The reality is:
 
 Writing code is easy, but building a sustainable project takes time and forward thinking. 
 
-***Before venturing out, set yourself a few milestones and plan well ahead of time.*** 
+###### Before venturing out, set yourself a few milestones and plan well ahead of time
 
 Come up with a list of outcomes you're looking to achieve and break it down into a loose checklist to work towards to. I'm essentially saying to work in an Agile-like way, and it'll help alot. Stay flexible when you move with your project, since you're almost always going to uncover new work or ideas to try out. Always take breaks in development and reassess the project situation to re-prioritise your work.
 
