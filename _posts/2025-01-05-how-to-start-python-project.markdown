@@ -22,7 +22,7 @@ There's a good chance the code has become fairly messy, and you might not even r
 
 So what happened? How did we get here? The reality is:
 
-***we never thought to plan our development and enabled scope to creep in.*** 
+***We never thought to plan our development and enabled scope to creep in.*** 
 
 Writing code is easy, but building a sustainable project takes time and forward thinking. 
 
