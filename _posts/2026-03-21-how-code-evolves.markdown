@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How Code Evolves: On Frameworks, Teams, and the Engineering Ceiling"
+title:  "How Code Evolves: On Frameworks, Teams, and the Dev Ceiling"
 date:   2026-03-21 09:00:00 +0000
 categories: jekyll update
 ---
